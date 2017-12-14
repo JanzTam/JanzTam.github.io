@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Tangjz&#39;s Blog">
 <meta property="og:description" content="1、WKWebView在 iOS8上的坑设置是否可侧滑为true，视图消失的时候，而新推出的导航控制器也实现了interactivePopGestureRecognizer?.delegate=self 1webView?.allowsBackForwardNavigationGestures = true 就会引起手势冲突，WKWebView会将WKWebView.interactivePopG">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:07:47.032Z">
+<meta property="og:updated_time" content="2017-12-14T05:40:26.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC转Swift一路上遇到的坑和心得">
 <meta name="twitter:description" content="1、WKWebView在 iOS8上的坑设置是否可侧滑为true，视图消失的时候，而新推出的导航控制器也实现了interactivePopGestureRecognizer?.delegate=self 1webView?.allowsBackForwardNavigationGestures = true 就会引起手势冲突，WKWebView会将WKWebView.interactivePopG">
@@ -322,7 +322,7 @@
       
         <p>1、<code>WKWebView</code>在 iOS8上的坑<br>设置是否可侧滑为true，视图消失的时候，而新推出的导航控制器也实现了<br><code>interactivePopGestureRecognizer?.delegate=self</code></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView?.allowsBackForwardNavigationGestures = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>就会引起手势冲突，<code>WKWebView</code>会将<code>WKWebView.interactivePopGestureRecognizer?.delegate</code>设为<code>nil</code>,继续向nil发送消息导致崩溃错误</p>
+<p>就会引起手势冲突，<code>WKWebView</code>会将<code>WKWebView.interactivePopGestureRecognizer?.delegate</code>设为<code>nil</code>,继续向nil发送消息导致崩溃错误<br><a id="more"></a></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*** -[_UINavigationInteractiveTransitionBase gestureRecognizer:</span><br><span class="line">shouldRecognizeSimultaneouslyWithGestureRecognizer:]: </span><br><span class="line">message sent to deallocated instance <span class="number">0x12cdc1d60</span></span><br></pre></td></tr></table></figure>
 <p>解决方案</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> #available(iOS <span class="number">9</span>, *) &#123;</span><br><span class="line">   webView?.allowsBackForwardNavigationGestures = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -408,8 +408,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/30/Xcode9-如何设置主题颜色？/" rel="prev" title="Xcode9 如何设置主题颜色？">
-                Xcode9 如何设置主题颜色？ <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/19/网易新闻iOS版使用的开源组件/" rel="prev" title="网易新闻iOS版使用的开源组件">
+                网易新闻iOS版使用的开源组件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -482,7 +482,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
