@@ -663,7 +663,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2017/03/15/利用Multipeer-Connectivity框架进行WiFi传输/">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2016/03/15/利用Multipeer-Connectivity框架进行WiFi传输/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang Jianzhuo">
@@ -682,7 +682,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/15/利用Multipeer-Connectivity框架进行WiFi传输/" itemprop="url">利用Multipeer Connectivity框架进行WiFi传输</a></h1>
+                <a class="post-title-link" href="/2016/03/15/利用Multipeer-Connectivity框架进行WiFi传输/" itemprop="url">利用Multipeer Connectivity框架进行WiFi传输</a></h1>
         
 
         <div class="post-meta">
@@ -694,8 +694,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T12:25:08+08:00">
-                2017-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-15T12:25:08+08:00">
+                2016-03-15
               </time>
             
 
@@ -752,6 +752,144 @@
 <p>5、发送图片（此Demo只是简单地做了个收发图片的Demo，此框架可实现的功能当然不止这么简单。）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">-(void)sendData</span><br><span class="line">&#123;</span><br><span class="line">    [marrFileData removeAllObjects];</span><br><span class="line">    </span><br><span class="line">    NSData *sendData = UIImagePNGRepresentation([UIImage imageNamed:@&quot;test2.png&quot;]);</span><br><span class="line">    NSUInteger length = [sendData length];</span><br><span class="line">    NSUInteger chunkSize = 100 * 1024;</span><br><span class="line">    NSUInteger offset = 0;</span><br><span class="line">    do &#123;</span><br><span class="line">        NSUInteger thisChunkSize = length - offset &gt; chunkSize ? chunkSize : length - offset;</span><br><span class="line">        NSData* chunk = [NSData dataWithBytesNoCopy:(char *)[sendData bytes] + offset</span><br><span class="line">                                             length:thisChunkSize</span><br><span class="line">                                       freeWhenDone:NO];</span><br><span class="line">        NSLog(@&quot;chunk length : %lu&quot;,(unsigned long)chunk.length);</span><br><span class="line">        </span><br><span class="line">        [marrFileData addObject:[NSData dataWithData:chunk]];</span><br><span class="line">        offset += thisChunkSize;</span><br><span class="line">    &#125; while (offset &lt; length);</span><br><span class="line">    </span><br><span class="line">    noOfdata = [marrFileData count];</span><br><span class="line">    noOfDataSend = 0;</span><br><span class="line">    </span><br><span class="line">    if ([marrFileData count] &gt; 0) &#123;</span><br><span class="line">        [self.mySession sendData:[marrFileData objectAtIndex:noOfDataSend] toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataReliable error:nil];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)appendFileData</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableData *fileData = [NSMutableData data];</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; [marrReceiveData count]; i++) &#123;</span><br><span class="line">        [fileData appendData:[marrReceiveData objectAtIndex:i]];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [fileData writeToFile:[NSString stringWithFormat:@&quot;%@/Image.png&quot;, [NSHomeDirectory() stringByAppendingPathComponent:@&quot;Documents&quot;]] atomically:YES];</span><br><span class="line">    </span><br><span class="line">    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:fileData], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo</span><br><span class="line">&#123;</span><br><span class="line">    if (!error) &#123;</span><br><span class="line">        [self invokeAlertMethod:@&quot;发送成功&quot; Body:@&quot;图片已保存到手机相册&quot; Delegate:nil];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>您可在<a href="https://github.com/JanzTam/WiFiShareDemo" target="_blank" rel="noopener">Github</a>上下载完整Demo。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2015/11/02/Swift-定位-CLLocationManager/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tang Jianzhuo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/02/Swift-定位-CLLocationManager/" itemprop="url">[Swift]定位-CLLocationManager</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-02T13:53:51+08:00">
+                2015-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>此文章主要介绍如何在Swift下使用CLLocationManager来获取定位的经纬度，并根据经纬度进行你地理编码来获取定位点的信息。<br>先导入<strong>MapKit</strong>头文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import MapKit</span><br></pre></td></tr></table></figure>
+<p>为了让代码更容易理解，我预先在StoryBoard创建好了初始界面，并简单的做了下屏幕适配。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-bd16962bf53e1909.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在iOS8以上，苹果官方规定，使用定位前都必须要先经过用户同意。<br>先在Info.plist里添加2个Key，<strong>NSLocationWhenInUseUsageDescription</strong>和<strong>NSLocationAlwaysUsageDescription</strong>。之前我只添加了一个key，发现一直没有向用户发送允许请求定位的信息。把2个key都加进去就好了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-880e06e6aad448c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请求允许定位key.png"></p>
+<h3 id="CLLocationManager"><a href="#CLLocationManager" class="headerlink" title="CLLocationManager"></a>CLLocationManager</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.locateManage.delegate = self</span><br><span class="line">        //请求定位权限</span><br><span class="line">if self.locateManage.respondsToSelector(Selector(&quot;requestAlwaysAuthorization&quot;)) &#123;</span><br><span class="line">       self.locateManage.requestAlwaysAuthorization()</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line">self.locateManage.desiredAccuracy = kCLLocationAccuracyBest//定位精准度</span><br><span class="line">self.locateManage.startUpdatingLocation()//开始定位</span><br></pre></td></tr></table></figure>
+<h3 id="MapView上显示定位点"><a href="#MapView上显示定位点" class="headerlink" title="MapView上显示定位点"></a>MapView上显示定位点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.mapViewLoca.showsUserLocation = true</span><br></pre></td></tr></table></figure>
+<p>为了节省用户电量，苹果建议我们，一般情况下，最好不要频繁地获取定位信息，这个教程里做了个示范，我在<strong>CLLocationManager</strong>定位代理方法里面只要获取到一次信息，就停止定位，并在定位的经纬度保存到属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var currentCoordinate:CLLocationCoordinate2D?</span><br></pre></td></tr></table></figure>
+<h3 id="CLLocationManager定位代理方法"><a href="#CLLocationManager定位代理方法" class="headerlink" title="CLLocationManager定位代理方法"></a>CLLocationManager定位代理方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) &#123;</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line">        if let newLoca = locations.last &#123;</span><br><span class="line">            CLGeocoder().reverseGeocodeLocation(newLoca, completionHandler: &#123; (pms, err) -&gt; Void in</span><br><span class="line">                if let newCoordinate = pms?.last?.location?.coordinate &#123;</span><br><span class="line">                    //此处设置地图中心点为定位点，缩放级别18</span><br><span class="line">                    self.mapViewLoca.setCenterCoordinateLevel(newCoordinate, zoomLevel: 15, animated: true)</span><br><span class="line">                    manager.stopUpdatingLocation()//停止定位，节省电量，只获取一次定位</span><br><span class="line">                    </span><br><span class="line">                    self.currentCoordinate = newCoordinate//记录定位点经纬度</span><br><span class="line">                    </span><br><span class="line">                    //取得最后一个地标，地标中存储了详细的地址信息，注意：一个地名可能搜索出多个地址</span><br><span class="line">                    let placemark:CLPlacemark = (pms?.last)!</span><br><span class="line">                    let location = placemark.location;//位置</span><br><span class="line">                    let region = placemark.region;//区域</span><br><span class="line">                    let addressDic = placemark.addressDictionary;//详细地址信息字典,包含以下部分信息</span><br><span class="line">//                    let name=placemark.name;//地名</span><br><span class="line">//                    let thoroughfare=placemark.thoroughfare;//街道</span><br><span class="line">//                    let subThoroughfare=placemark.subThoroughfare; //街道相关信息，例如门牌等</span><br><span class="line">//                    let locality=placemark.locality; // 城市</span><br><span class="line">//                    let subLocality=placemark.subLocality; // 城市相关信息，例如标志性建筑</span><br><span class="line">//                    let administrativeArea=placemark.administrativeArea; // 州</span><br><span class="line">//                    let subAdministrativeArea=placemark.subAdministrativeArea; //其他行政区域信息</span><br><span class="line">//                    let postalCode=placemark.postalCode; //邮编</span><br><span class="line">//                    let ISOcountryCode=placemark.ISOcountryCode; //国家编码</span><br><span class="line">//                    let country=placemark.country; //国家</span><br><span class="line">//                    let inlandWater=placemark.inlandWater; //水源、湖泊</span><br><span class="line">//                    let ocean=placemark.ocean; // 海洋</span><br><span class="line">//                    let areasOfInterest=placemark.areasOfInterest; //关联的或利益相关的地标</span><br><span class="line">                    print(location,region,addressDic)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="MKMapView缩放"><a href="#MKMapView缩放" class="headerlink" title="MKMapView缩放"></a>MKMapView缩放</h3><p>MKMapView提供的方法里并没有设置地图缩放级别的方法。这个教程里我给MKMapView添加了个extension</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func setCenterCoordinateLevel(centerCoordinate:CLLocationCoordinate2D,var zoomLevel:Double,animated:Bool)</span><br></pre></td></tr></table></figure>
+<p>具体实现方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">public func setCenterCoordinateLevel(centerCoordinate:CLLocationCoordinate2D,var zoomLevel:Double,animated:Bool) &#123;</span><br><span class="line">       //设置最小缩放级别</span><br><span class="line">       zoomLevel  = min(zoomLevel, 22)</span><br><span class="line">       </span><br><span class="line">       let span   = self.coordinateSpanWithMapView(self, centerCoordinate: centerCoordinate, zoomLevel: zoomLevel);</span><br><span class="line">       let region = MKCoordinateRegionMake(centerCoordinate, span);</span><br><span class="line">       </span><br><span class="line">       self.setRegion(region, animated: animated)</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func longitudeToPixelSpaceX(longitude:Double) -&gt;Double &#123;</span><br><span class="line">       return round(MERCATOR_OFFSET + MERCATOR_RADIUS * longitude * M_PI / 180.0)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func latitudeToPixelSpaceY(latitude:Double) -&gt;Double &#123;</span><br><span class="line">       return round(MERCATOR_OFFSET - MERCATOR_RADIUS * log((1 + sin(latitude * M_PI / 180.0)) / (1 - sin(latitude * M_PI / 180.0))) / 2.0)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func pixelSpaceXToLongitude(pixelX:Double) -&gt;Double &#123;</span><br><span class="line">       return ((round(pixelX) - MERCATOR_OFFSET) / MERCATOR_RADIUS) * 180.0 / M_PI</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func pixelSpaceYToLatitude(pixelY:Double) -&gt;Double &#123;</span><br><span class="line">       return (M_PI / 2.0 - 2.0 * atan(exp((round(pixelY) - MERCATOR_OFFSET) / MERCATOR_RADIUS))) * 180.0 / M_PI</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func coordinateSpanWithMapView(mapView:MKMapView,</span><br><span class="line">                         centerCoordinate:CLLocationCoordinate2D,</span><br><span class="line">                                zoomLevel:Double) -&gt; MKCoordinateSpan</span><br><span class="line">   &#123;</span><br><span class="line">       let centerPixelX = self.longitudeToPixelSpaceX(centerCoordinate.longitude)</span><br><span class="line">       let centerPixelY = self.latitudeToPixelSpaceY(centerCoordinate.latitude)</span><br><span class="line">       let zoomExponent = 20.0 - zoomLevel</span><br><span class="line">       let zoomScale = pow(2.0, zoomExponent)</span><br><span class="line">       </span><br><span class="line">       let mapSizeInPixels = mapView.bounds.size</span><br><span class="line">       let scaledMapWidth  = Double(mapSizeInPixels.width) * zoomScale</span><br><span class="line">       let scaledMapHeight = Double(mapSizeInPixels.height) * zoomScale</span><br><span class="line">       </span><br><span class="line">       let topLeftPixelX = centerPixelX - (scaledMapWidth/2)</span><br><span class="line">       let topLeftPixelY = centerPixelY - (scaledMapHeight/2)</span><br><span class="line">       </span><br><span class="line">       let minLng = self.pixelSpaceXToLongitude(topLeftPixelX)</span><br><span class="line">       let maxLng = self.pixelSpaceXToLongitude(topLeftPixelX + scaledMapWidth)</span><br><span class="line">       let longitudeDelta = maxLng - minLng</span><br><span class="line">       </span><br><span class="line">       let minLat = self.pixelSpaceYToLatitude(topLeftPixelY);</span><br><span class="line">       let maxLat = self.pixelSpaceYToLatitude(topLeftPixelY + scaledMapHeight);</span><br><span class="line">       let latitudeDelta = -1 * (maxLat - minLat);</span><br><span class="line">       </span><br><span class="line">       let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)</span><br><span class="line">       return span</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>运行代码，如果出现报错，是因为项目里是纯Swift的话，需要将【Build settings-&gt;Embedded Content Contains Swift Code】的<code>no</code>改为<code>yes</code>.</p>
+<p>你可以在<a href="https://github.com/JanzTam/MKMapView_swift" target="_blank" rel="noopener">Github</a>找到此教程的代码。</p>
+<hr>
+<p>参考资料：<br><a href="http://troybrant.net/blog/2010/01/mkmapview-and-zoom-levels-a-visual-guide/" target="_blank" rel="noopener">MKMapView and Zoom Levels: A Visual Guide</a></p>
 
           
         
@@ -1005,7 +1143,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1018,7 +1156,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
