@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2017/12/13/OC转Swift一路上遇到的坑和心得/">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2017/12/14/Hexo-Github-Page-自定义域名-HTTPS-搭建博客教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang Jianzhuo">
@@ -271,7 +271,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/13/OC转Swift一路上遇到的坑和心得/" itemprop="url">OC转Swift一路上遇到的坑和心得</a></h1>
+                <a class="post-title-link" href="/2017/12/14/Hexo-Github-Page-自定义域名-HTTPS-搭建博客教程/" itemprop="url">Hexo+Github Page+自定义域名+HTTPS-搭建博客教程</a></h1>
         
 
         <div class="post-meta">
@@ -283,8 +283,254 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T17:08:04+08:00">
-                2017-12-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T13:04:17+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、Hexo-搭建博客"><a href="#一、Hexo-搭建博客" class="headerlink" title="一、Hexo 搭建博客"></a>一、Hexo 搭建博客</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2017/08/30/Xcode9-如何设置主题颜色？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tang Jianzhuo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/30/Xcode9-如何设置主题颜色？/" itemprop="url">Xcode9 如何设置主题颜色？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T13:13:31+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>1. 下载主题</strong><br>从 <a href="https://github.com/hdoria/xcode-themes" target="_blank" rel="noopener">Github</a> 上下载主题，我用的是 <a href="https://github.com/hollance/WashedOut" target="_blank" rel="noopener">WashedOut</a>，效果如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-921e022636108709.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Screenshot.png"></p>
+<p><strong>2.使用命令行创建存放主题的文件夹</strong>（不能手动创建）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/Library/Developer/Xcode/UserData/FontAndColorThemes/</span><br></pre></td></tr></table></figure>
+<p><strong>3.然后给这个文件夹加上符号链接</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ln -s $DRACULA_THEME/Washed-Out.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/Washed-Out.xccolortheme</span><br></pre></td></tr></table></figure>
+<p><strong>4.将 <code>Washed-Out.xccolortheme</code> 移到文件夹里，替换之前的符号链接</strong></p>
+<p><strong>5.重启 Xcode 在 font&amp;colors 就可以看到下载下来的主题了</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2017/04/20/OC转Swift一路上遇到的坑和心得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tang Jianzhuo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/20/OC转Swift一路上遇到的坑和心得/" itemprop="url">OC转Swift一路上遇到的坑和心得</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-20T17:08:04+08:00">
+                2017-04-20
               </time>
             
 
@@ -404,6 +650,311 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2017/03/15/利用Multipeer-Connectivity框架进行WiFi传输/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tang Jianzhuo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/15/利用Multipeer-Connectivity框架进行WiFi传输/" itemprop="url">利用Multipeer Connectivity框架进行WiFi传输</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T12:25:08+08:00">
+                2017-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>什么是Multipeer Connectivity？</strong></p>
+<p>在iOS7中，引入了一个全新的框架——Multipeer Connectivity（多点连接）。利用Multipeer Connectivity框架，即使在没有连接到WiFi（WLAN）或移动网络（xG）的情况下，距离较近的Apple设备（iMac/iPad/iPhone）之间可基于蓝牙和WiFi（P2P WiFi）技术进行发现和连接实现近场通信。</p>
+<p>Multipeer Connectivity扩充的功能与利用AirDrop传输文件非常类似，可以将其看作AirDrop不能直接使用的补偿，代价是需要自己实现。</p>
+<p>本Demo主要用到4个类：<br><code>MCBrowserViewController</code>: MCBrowserViewController继承自UIViewController，提供了基本的UI应用框架。</p>
+<p><code>MCAdvertiserAssistant</code>: MCAdvertiserAssistant为针对Advertiser封装的管理助手,主要处理广播信息。</p>
+<p><code>MCSession</code>: 类似TCP链接中的socket。创建MCSession时，需指定自身MCPeerID，类似bind。</p>
+<p><code>MCPeerID</code>: 类似sockaddr，用于标识连接的两端endpoint，通常是昵称或设备名称。</p>
+<p>1、简单地建立一个界面，主要有连接和发送2个UIButton。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-0bac7e71855c258c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240" alt="create_button.png"></p>
+<p>2、Multipeer Connectivity框架初始化这4个类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - Wifi Sharing Methods</span><br><span class="line">-(void)setUpMultipeer</span><br><span class="line">&#123;</span><br><span class="line">    //  Setup peer ID</span><br><span class="line">    self.myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];</span><br><span class="line">    </span><br><span class="line">    //  Setup session</span><br><span class="line">    self.mySession = [[MCSession alloc] initWithPeer:self.myPeerID];</span><br><span class="line">    self.mySession.delegate = self;</span><br><span class="line">    </span><br><span class="line">    //  Setup BrowserViewController</span><br><span class="line">    self.browserVC = [[MCBrowserViewController alloc] initWithServiceType:@&quot;chat&quot; session:self.mySession];</span><br><span class="line">    self.browserVC.delegate = self;</span><br><span class="line">    </span><br><span class="line">    //  Setup Advertiser</span><br><span class="line">    self.advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@&quot;chat&quot; discoveryInfo:nil session:self.mySession];</span><br><span class="line">    [self.advertiser start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)showBrowserVC</span><br><span class="line">&#123;</span><br><span class="line">    [self presentViewController:self.browserVC animated:YES completion:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)dismissBrowserVC</span><br><span class="line">&#123;</span><br><span class="line">    [self.browserVC dismissViewControllerAnimated:YES completion:^(void)&#123;</span><br><span class="line">        [self invokeAlertMethod:@&quot;连接成功&quot; Body:@&quot;Both device connected successfully.&quot; Delegate:nil];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)stopWifiSharing:(BOOL)isClear</span><br><span class="line">&#123;</span><br><span class="line">    if(isClear &amp;&amp; self.mySession != nil)&#123;</span><br><span class="line">        [self.mySession disconnect];</span><br><span class="line">        </span><br><span class="line">        [self.mySession setDelegate:nil];</span><br><span class="line">        </span><br><span class="line">        self.mySession = nil;</span><br><span class="line">        </span><br><span class="line">        self.browserVC = nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、<code>MCBrowserViewController</code>代理方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#pragma marks MCBrowserViewControllerDelegate</span><br><span class="line">// 点击完成</span><br><span class="line">-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController</span><br><span class="line">&#123;</span><br><span class="line">    [self dismissBrowserVC];</span><br><span class="line">    [marrReceiveData removeAllObjects];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 点击取消</span><br><span class="line">-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController</span><br><span class="line">&#123;</span><br><span class="line">    [self dismissBrowserVC];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、<code>MCSession</code>代理方法<br>主要处理发送方传递的文件或者信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">// Received data from remote peer</span><br><span class="line">- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;data receiveddddd : %lu&quot;,(unsigned long)data.length);</span><br><span class="line">    </span><br><span class="line">    if (data.length &gt; 0) &#123;</span><br><span class="line">        if (data.length &lt; 2) &#123;</span><br><span class="line">            noOfDataSend++;</span><br><span class="line">            NSLog(@&quot;noofdatasend : %zd&quot;,noOfDataSend);</span><br><span class="line">            NSLog(@&quot;array count : %zd&quot;,marrFileData.count);</span><br><span class="line">            if (noOfDataSend &lt; ([marrFileData count])) &#123;</span><br><span class="line">                [self.mySession sendData:[marrFileData objectAtIndex:noOfDataSend] toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataReliable error:nil];</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                [self.mySession sendData:[@&quot;File Transfer Done&quot; dataUsingEncoding:NSUTF8StringEncoding] toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataReliable error:nil];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if ([[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] isEqualToString:@&quot;File Transfer Done&quot;]) &#123;</span><br><span class="line">                [self appendFileData];</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                [self.mySession sendData:[@&quot;1&quot; dataUsingEncoding:NSUTF8StringEncoding] toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataReliable error:nil];</span><br><span class="line">                [marrReceiveData addObject:data];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Received a byte stream from remote peer</span><br><span class="line">- (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;did receive stream&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Start receiving a resource from remote peer</span><br><span class="line">- (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;start receiving&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Finished receiving a resource from remote peer and saved the content in a temporary location - the app is responsible for moving the file to a permanent location within its sandbox</span><br><span class="line">- (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;finish receiving resource&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;change state : %zd&quot;,state);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、发送图片（此Demo只是简单地做了个收发图片的Demo，此框架可实现的功能当然不止这么简单。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">-(void)sendData</span><br><span class="line">&#123;</span><br><span class="line">    [marrFileData removeAllObjects];</span><br><span class="line">    </span><br><span class="line">    NSData *sendData = UIImagePNGRepresentation([UIImage imageNamed:@&quot;test2.png&quot;]);</span><br><span class="line">    NSUInteger length = [sendData length];</span><br><span class="line">    NSUInteger chunkSize = 100 * 1024;</span><br><span class="line">    NSUInteger offset = 0;</span><br><span class="line">    do &#123;</span><br><span class="line">        NSUInteger thisChunkSize = length - offset &gt; chunkSize ? chunkSize : length - offset;</span><br><span class="line">        NSData* chunk = [NSData dataWithBytesNoCopy:(char *)[sendData bytes] + offset</span><br><span class="line">                                             length:thisChunkSize</span><br><span class="line">                                       freeWhenDone:NO];</span><br><span class="line">        NSLog(@&quot;chunk length : %lu&quot;,(unsigned long)chunk.length);</span><br><span class="line">        </span><br><span class="line">        [marrFileData addObject:[NSData dataWithData:chunk]];</span><br><span class="line">        offset += thisChunkSize;</span><br><span class="line">    &#125; while (offset &lt; length);</span><br><span class="line">    </span><br><span class="line">    noOfdata = [marrFileData count];</span><br><span class="line">    noOfDataSend = 0;</span><br><span class="line">    </span><br><span class="line">    if ([marrFileData count] &gt; 0) &#123;</span><br><span class="line">        [self.mySession sendData:[marrFileData objectAtIndex:noOfDataSend] toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataReliable error:nil];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)appendFileData</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableData *fileData = [NSMutableData data];</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; [marrReceiveData count]; i++) &#123;</span><br><span class="line">        [fileData appendData:[marrReceiveData objectAtIndex:i]];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [fileData writeToFile:[NSString stringWithFormat:@&quot;%@/Image.png&quot;, [NSHomeDirectory() stringByAppendingPathComponent:@&quot;Documents&quot;]] atomically:YES];</span><br><span class="line">    </span><br><span class="line">    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:fileData], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo</span><br><span class="line">&#123;</span><br><span class="line">    if (!error) &#123;</span><br><span class="line">        [self invokeAlertMethod:@&quot;发送成功&quot; Body:@&quot;图片已保存到手机相册&quot; Delegate:nil];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>您可在<a href="https://github.com/JanzTam/WiFiShareDemo" target="_blank" rel="noopener">Github</a>上下载完整Demo。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2015/10/25/CocoaPods快速配置并上手/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tang Jianzhuo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/25/CocoaPods快速配置并上手/" itemprop="url">CocoaPods快速配置并上手</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-25T13:15:43+08:00">
+                2015-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>此文章希望能帮助到未使用过CocoaPods的iOS开发者。</strong></p>
+<p>如果你还没有用上CocoaPods，建议你花一小段时间浏览这篇教程，并按着教程快速配置CocoaPods，相信我，用上一次之后你便会 <del>爱 上他</del> 爱上它。</p>
+<p>当前系统为：<strong>OS X 10.11</strong> ,如果哪里写得不对，请留言提醒我，我会感激你的。或者有什么疑问，也可留言，谢谢。</p>
+<p><strong>什么是CocoaPods？</strong><br>这个不用说了吧，没用过至少也听过吧。真不知道的自己百度吧。</p>
+<h1 id="快速配置"><a href="#快速配置" class="headerlink" title="快速配置"></a>快速配置</h1><p><strong>1、安装Brew</strong><br>进入Homebrew的<a href="http://brew.sh/" target="_blank" rel="noopener">官方网站</a>找到它的终端安装命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>下载需要一段时间,执行以后不出意外,你会看到终端提示安装成功</p>
+<p><strong>2、更新Ruby</strong><br>通过Brew将Ruby更新到最新版本,OS X 已经自带了Ruby不过版本偏低.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ruby</span><br></pre></td></tr></table></figure>
+<p>更新成功以后重启终端,并执行以下命令来检查一下Ruby和gem当前使用的版本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem -v</span><br></pre></td></tr></table></figure>
+<p>以下重要一步！</p>
+<p>ruby 的软件源 因为使用的是亚马逊的云服务，所以被墙了，需要更新一下 ruby 的源，使用如下代码将官方的 ruby 源替换成  <a href="https://gems.ruby-china.org/" target="_blank" rel="noopener">https://gems.ruby-china.org/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里是3句命令，请按顺序执行</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources -a https://gems.ruby-china.org/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
+<p><strong>3、通过gem安装CocoaPods</strong><br>在安装之前,还需要将<strong>Xcode</strong>里的<strong>Command line</strong>工具安装好。</p>
+<p>gem安装CocoaPods的原来命令：<br><del>sudo gem install cocoapods</del></p>
+<p>在OS 10.11下使用原来的命令你会发现并不能如愿安装成功。应该改用如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install -n /usr/local/bin cocoapods</span><br></pre></td></tr></table></figure>
+<p>安装成功查看下当前cocoapods版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod --version</span><br></pre></td></tr></table></figure>
+<p>使用<strong>Search</strong>命令来看看你需要的第三方库是否存在!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod search AFNetworking</span><br></pre></td></tr></table></figure>
+<p>看到AFNetworking搜索结果出来了，到此,<strong>CocoaPods</strong>的安装就完成了</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>打开终端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd 工程路径</span><br></pre></td></tr></table></figure>
+<p>在工程下创建一个默认的Podfile执行命令：<br>执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod init</span><br></pre></td></tr></table></figure>
+<p>用Xcode打开Podfile命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -a Xcode Podfile</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-38e1dda736c13889.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="podfile.png"><br>以下仅用作解释，格式【解释内容】，请不要照搬配置，正常如上图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Uncomment this line to define a global platform for your project</span><br><span class="line">platform :ios, &apos;7.0&apos;  【--&gt;修改类库支持的最低iOS版本】</span><br><span class="line"># Uncomment this line if you&apos;re using Swift</span><br><span class="line"># use_frameworks! 【使用 Swift 需去掉#】</span><br><span class="line"></span><br><span class="line">target &apos;Worker&apos; do</span><br><span class="line"></span><br><span class="line">pod &apos;AMap2DMap&apos;, ‘~&gt; 3.0.0’【指定某一库的版本】</span><br><span class="line"></span><br><span class="line">pod &apos;AMapSearch&apos;</span><br><span class="line"></span><br><span class="line">pod &apos;MBProgressHUD&apos;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>如果想让CocoaPods的引入不显示警告，在Podfile最上方加上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inhibit_all_warnings!</span><br></pre></td></tr></table></figure>
+<p>配置好Podfile，打开终端，在工程的路径下，使用安装全部第三库的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure>
+<p>运行<code>pod install</code>命令，等一下，不对！为什么终端一直卡在这个命令不动了？不要急，再看下去。</p>
+<p>有时候你pod search 一些第三方SDK，发现并不是最新版本，那是因为你的本地repo还没更新。本地repo更新命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo update</span><br></pre></td></tr></table></figure>
+<p>你会发现，现在无论是<strong>pod install</strong>还是<strong>pod repo update</strong>，都会一直卡在那里不动。这时候你需要做的是，将CocoaPods 设置成使用 gitcafe 镜像或者oschina镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里是3句命令，请按顺序执行</span><br><span class="line">pod repo remove master</span><br><span class="line">pod repo add master https://gitcafe.com/akuandev/Specs.git</span><br><span class="line">pod repo update</span><br></pre></td></tr></table></figure>
+<p>将以上代码中的 <code>https://gitcafe.com/akuandev/Specs.git</code><br> 替换成 <code>http://git.oschina.net/akuandev/Specs.git</code><br> 即可使用 oschina 上的镜像。<br><strong>pod repo update</strong>第一次执行的时间会比较长，CocoaPods 会将这些<code>podspec</code>索引文件更新到本地的 <code>~/.cocoapods/</code><br>目录下，这个索引文件比较大。</p>
+<p>这以后，执行<strong>pod 命令</strong>就会快很多啦。</p>
+<hr>
+<p>最后，感谢以下参考资料：</p>
+<p><a href="http://blog.csdn.net/ysy441088327/article/details/8611731" target="_blank" rel="noopener">余书懿-CocoaPods的安装和使用</a></p>
+<p><a href="http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">唐巧-用CocoaPods做iOS程序的依赖管理</a></p>
+<p><a href="http://www.jianshu.com/p/5fc15906c53a" target="_blank" rel="noopener">CocoaPods-Command-line Reference</a></p>
+<p><a href="https://guides.cocoapods.org/terminal/commands.html#pod_repo_update" target="_blank" rel="noopener">CocoaPods 终端命令官方文档</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -454,7 +1005,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -467,7 +1018,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
