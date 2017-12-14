@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Tangjz&#39;s Blog">
 <meta property="og:description" content="1、WKWebView在 iOS8上的坑设置是否可侧滑为true，视图消失的时候，而新推出的导航控制器也实现了interactivePopGestureRecognizer?.delegate=self 1webView?.allowsBackForwardNavigationGestures = true 就会引起手势冲突，WKWebView会将WKWebView.interactivePopG">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-13T10:04:44.782Z">
+<meta property="og:updated_time" content="2017-12-14T02:44:29.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC转Swift一路上遇到的坑和心得">
 <meta name="twitter:description" content="1、WKWebView在 iOS8上的坑设置是否可侧滑为true，视图消失的时候，而新推出的导航控制器也实现了interactivePopGestureRecognizer?.delegate=self 1webView?.allowsBackForwardNavigationGestures = true 就会引起手势冲突，WKWebView会将WKWebView.interactivePopG">
@@ -328,7 +328,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> #available(iOS <span class="number">9</span>, *) &#123;</span><br><span class="line">   webView?.allowsBackForwardNavigationGestures = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>2、Swift上的单例</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 单例</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> shared = <span class="type">Single</span>.<span class="keyword">init</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">override</span> <span class="keyword">init</span>()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、善用<code>extension</code>代替 Objective-C 里的<code>pch</code></p>
+<p>3、善用<code>extension</code>和<code>struct</code>代替 Objective-C 里的<code>pch</code></p>
 <p>4、 <code>UIAlertController</code> 在<strong> iOS 8 iPad</strong> 下的坑<br>需添加以下3行代码,防止崩溃</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> popoverPresentationController = alertVC.popoverPresentationController &#123;</span><br><span class="line">      popoverPresentationController.sourceView = sender</span><br><span class="line">      popoverPresentationController.sourceRect = sender.bounds</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>5、Swift 的闭包初始化</p>
