@@ -90,7 +90,7 @@
 <meta property="og:description" content="折腾了2天，终于把博客搭起来了。再见简书 :)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/185624-942b7e17a4412aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-14T09:02:14.335Z">
+<meta property="og:updated_time" content="2017-12-15T01:59:25.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github Page+自定义域名+HTTPS-搭建博客教程">
 <meta name="twitter:description" content="折腾了2天，终于把博客搭起来了。再见简书 :)">
@@ -399,9 +399,9 @@
 </ul>
 <h3 id="将博客与Github关联"><a href="#将博客与Github关联" class="headerlink" title="将博客与Github关联"></a>将博客与Github关联</h3><ul>
 <li>在 Github 上创建名字为 XXX.github.io 的项目，XXX为自己的 github 用户名。</li>
-<li>打开本地的 MyBlog 文件夹项目内的_config.yml 配置文件，将其中的 type 设置为git</li>
+<li>打开本地的 MyBlog 文件夹项目内的_config.yml 配置文件，将其中的 type 设置为git，repository 是你 github.io 仓库的 git 地址</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/tengzhangchao/tengzhangchao.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/janztam/janztam.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <ul>
 <li>运行：npm install hexo-deployer-git –save</li>
 <li>运行：hexo g（本地生成静态文件）</li>
