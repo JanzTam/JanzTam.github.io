@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tangjz.cc/"/>
-  <updated>2017-12-19T03:06:58.507Z</updated>
+  <updated>2018-04-18T11:04:01.423Z</updated>
   <id>http://tangjz.cc/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我常用的 Mac 开发工具和应用</title>
+    <link href="http://tangjz.cc/2018/04/18/%E6%88%91%E5%B8%B8%E7%94%A8%E7%9A%84-Mac-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%92%8C%E5%BA%94%E7%94%A8/"/>
+    <id>http://tangjz.cc/2018/04/18/我常用的-Mac-开发工具和应用/</id>
+    <published>2018-04-18T11:08:39.000Z</published>
+    <updated>2018-04-18T11:04:01.423Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录一下个人使用 Mac OS 系统过程中常用的工具和应用<br><a id="more"></a></p><p><strong>Alfred</strong>：是一个让你可以丢掉鼠标的神器</p><p><strong>Navicat Premium</strong>：支持多种数据库，开发必备</p><p><strong>LightPaper</strong>：免费的Markdown 编译器，十分好用</p><p><strong>iZip</strong>：解压缩文件</p><p><strong>Movist</strong>：支持多种视频格式播放</p><p><strong>PifGIF</strong>：视频转GIF</p><p><strong>ForkLift</strong>：FTP等远程连接工具</p><p><strong>CleanMyMac</strong>：傻瓜式清理Mac垃圾</p><p><strong>Adobe LightRoom</strong>：批量修图</p><p><strong>Paw</strong>：API调试工具</p><p><strong>PostMan</strong>：API调试工具</p><p><strong>Dash</strong>：各种开发文档合集</p><p><strong>Surge</strong>：网络代理工具</p><p><strong>PaintCode</strong>：支持通过 svg 生成 iOS 和 Android 代码</p><p><strong>Sublime Text</strong>：支持多种编程语言的编译器</p><p><strong>Sketch</strong>：原型设计神器</p><p><strong>Sourcetree</strong>：Git 可视化应用</p><p><strong>CornerStone</strong>：SVN 可视化应用</p><p><strong>Charles</strong>：抓包神器，支持HTTP/HTTPS</p><p><strong>Adobe Photoshop</strong>：业余修图使用</p><p><strong>MindNode</strong>：脑图应用，iOS 和 Mac 都有，支持 iCloud 同步</p><p><strong>HBuilder</strong>：web语言编译器，支持本地部署</p><p><strong>TeamViewer</strong>：快速远程连接应用</p><p><strong>coconutBattery</strong>：免费查看iPhone 和 Mac 的电池损耗</p><p><strong>Anaconda</strong>：快速集成 Python 环境，包含了conda、Python等180多个科学包及其依赖项</p><p><strong>iMazing</strong>：可下载下架的应用等</p><p><strong>iTerm + zsh</strong>：iTerm 可以说是Mac 上最好用的终端应用，配合上 zsh ，大大地提高了我的工作效率</p><p><strong>Hopper Disassembler v4</strong>：逆向工具</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录一下个人使用 Mac OS 系统过程中常用的工具和应用&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Tools" scheme="http://tangjz.cc/categories/Tools/"/>
+    
+    
+      <category term="Mac" scheme="http://tangjz.cc/tags/Mac/"/>
+    
+      <category term="Tools" scheme="http://tangjz.cc/tags/Tools/"/>
+    
+      <category term="App" scheme="http://tangjz.cc/tags/App/"/>
+    
+      <category term="效率" scheme="http://tangjz.cc/tags/%E6%95%88%E7%8E%87/"/>
+    
+  </entry>
   
   <entry>
     <title>CocoaPods 更新 Specs 索引小技巧</title>
@@ -37,9 +65,9 @@
       <category term="iOS" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/iOS/"/>
     
     
-      <category term="CocoaPods" scheme="http://tangjz.cc/tags/CocoaPods/"/>
-    
       <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
+    
+      <category term="CocoaPods" scheme="http://tangjz.cc/tags/CocoaPods/"/>
     
   </entry>
   
@@ -223,9 +251,9 @@
       <category term="iOS" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/iOS/"/>
     
     
-      <category term="CocoaPods" scheme="http://tangjz.cc/tags/CocoaPods/"/>
-    
       <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
+    
+      <category term="CocoaPods" scheme="http://tangjz.cc/tags/CocoaPods/"/>
     
   </entry>
   
