@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tangjz.cc/"/>
-  <updated>2018-04-19T02:19:46.573Z</updated>
+  <updated>2018-04-23T11:09:47.983Z</updated>
   <id>http://tangjz.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang 笔记</title>
+    <link href="http://tangjz.cc/2018/04/20/Golang-%E7%AC%94%E8%AE%B0/"/>
+    <id>http://tangjz.cc/2018/04/20/Golang-笔记/</id>
+    <published>2018-04-20T09:55:57.000Z</published>
+    <updated>2018-04-23T11:09:47.983Z</updated>
+    
+    <content type="html"><![CDATA[<p>在选 JAVA 和 Golang 之间选一门后端语言纠结了好久，最后选择了 Golang 。看了2天语法，感觉和 Swift 有点像，对熟悉 swift 的开发者来说，应该十分容易上手。</p><p>在此记录一下学习 Golang 过程中的笔记。</p><a id="more"></a><h5 id="1-时间格式"><a href="#1-时间格式" class="headerlink" title="1.时间格式"></a>1.时间格式</h5><p>必须精确地限定到 golang 指定的时间原点：<code>2006-01-02 15:04:05</code></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(time.Now().Format(<span class="string">"2006-01-02 15:04:05"</span>))</span><br></pre></td></tr></table></figure><h5 id="2-fmt-Println-，多个结果，都返回了才会打印"><a href="#2-fmt-Println-，多个结果，都返回了才会打印" class="headerlink" title="2.  fmt.Println()，多个结果，都返回了才会打印"></a>2.  <code>fmt.Println()</code>，多个结果，都返回了才会打印</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pow</span><span class="params">(x, n, lim <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> v := math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line"><span class="keyword">return</span> v</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">fmt.Println(v) <span class="comment">//1先打印</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> lim</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">fmt.Println(</span><br><span class="line">pow(<span class="number">3</span>, <span class="number">2</span>, <span class="number">10</span>), <span class="comment">//2</span></span><br><span class="line">pow(<span class="number">3</span>, <span class="number">3</span>, <span class="number">20</span>), <span class="comment">//3</span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="3-defer-栈"><a href="#3-defer-栈" class="headerlink" title="3. defer 栈"></a>3. defer 栈</h5><p>推迟的函数调用会被压入一个栈中。当外层函数返回时，被推迟的函数会按照后进先出的顺序调用。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line"><span class="keyword">defer</span> fmt.Println(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(<span class="string">"done"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果：done 9 8 7 6 5 4 3 2 1</span></span><br></pre></td></tr></table></figure><h5 id="4-指针"><a href="#4-指针" class="headerlink" title="4. 指针"></a>4. 指针</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">i, j := <span class="number">42</span>, <span class="number">2701</span></span><br><span class="line"></span><br><span class="line">p := &amp;i         <span class="comment">// point to i</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// read i through the pointer</span></span><br><span class="line">*p = <span class="number">21</span>         <span class="comment">// set i through the pointer</span></span><br><span class="line">fmt.Println(i)  <span class="comment">// see the new value of i</span></span><br><span class="line"></span><br><span class="line">p = &amp;j         <span class="comment">// point to j</span></span><br><span class="line">*p = *p / <span class="number">37</span>   <span class="comment">// divide j through the pointer</span></span><br><span class="line">fmt.Println(j) <span class="comment">// see the new value of j</span></span><br></pre></td></tr></table></figure><h5 id="5-指针接收者声明方法"><a href="#5-指针接收者声明方法" class="headerlink" title="5. 指针接收者声明方法"></a>5. 指针接收者声明方法</h5><p>方法使用值接收者，那么方法会对原始值的副本进行操作。（对于函数的其它参数也是如此。）如果想修改它的接收者，可以使用指针接收者。</p><p>而以值为接收者的方法被调用时，接收者既能为值又能为指针：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</span><br><span class="line"><span class="keyword">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> v Vertex</span><br><span class="line">fmt.Println(v.Abs()) <span class="comment">// OK</span></span><br><span class="line">p := &amp;v</span><br><span class="line">fmt.Println(p.Abs()) <span class="comment">// OK</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在选 JAVA 和 Golang 之间选一门后端语言纠结了好久，最后选择了 Golang 。看了2天语法，感觉和 Swift 有点像，对熟悉 swift 的开发者来说，应该十分容易上手。&lt;/p&gt;
+&lt;p&gt;在此记录一下学习 Golang 过程中的笔记。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="开发" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Golang" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/Golang/"/>
+    
+    
+      <category term="Golang" scheme="http://tangjz.cc/tags/Golang/"/>
+    
+  </entry>
   
   <entry>
     <title>我常用的 Mac 开发工具和应用</title>
