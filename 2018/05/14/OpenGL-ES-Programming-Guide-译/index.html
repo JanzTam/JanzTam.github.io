@@ -89,13 +89,13 @@
 <meta property="og:site_name" content="Tangjz&#39;s Blog">
 <meta property="og:description" content="Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/About-OpenGL-ES.png">
-<meta property="og:image" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/eaglContext_eagleSharegroup_2x.png">
-<meta property="og:updated_time" content="2018-05-14T09:46:50.213Z">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/cpu_gpu_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/eaglContext_eagleSharegroup_2x.png">
+<meta property="og:updated_time" content="2018-05-14T09:51:30.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenGL ES Programming Guide&lt;译&gt;">
 <meta name="twitter:description" content="Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。">
-<meta name="twitter:image" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/About-OpenGL-ES.png">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/cpu_gpu_2x.png">
 
 
 
@@ -387,7 +387,7 @@
         <p>Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。<br><a id="more"></a></p>
 <h1 id="关于OpenGL-ES"><a href="#关于OpenGL-ES" class="headerlink" title="关于OpenGL ES"></a>关于OpenGL ES</h1><p><em>Open Graphics Library (OpenGL)</em> 用于可视化 2D 和 3D 数据。它是一个多用途开放标准图形库，支持 2D 和 3D 数字内容创建，机械和建筑设计，虚拟样机，飞行模拟，视频游戏等应用。您可以使用 OpenGL 配置 3D 图形管道并向其提交数据。顶点被转换并点亮，组装成图元，并被光栅化以创建 2D 图像。OpenGL 旨在将函数调用转换为可发送到底层图形硬件的图形命令。由于该底层硬件专用于处理图形命令，所以 OpenGL 绘图通常非常快速。</p>
 <p><em>OpenGL for Embedded Systems (OpenGL ES)</em> 是 OpenGL 的简化版本，它消除了冗余功能，提供了一个易于学习和易于在移动图形硬件中实现的库。</p>
-<p><img src="About-OpenGL-ES.png" alt=""></p>
+<p><img src="https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/cpu_gpu_2x.png" alt=""></p>
 <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>OpenGL ES 允许应用程序利用底层图形处理器的强大功能。iOS 设备上的 GPU 可以执行复杂的 2D 和 3D 绘图，以及最终图像中每个像素的复杂阴影计算。如果您的应用程序的设计要求需要最直接，最全面地访问 GPU 硬件，则应该使用 OpenGL ES。OpenGL ES 的典型客户端包括呈现 3D 图形的视频游戏和模拟。</p>
 <p>OpenGL ES是一个低级的，以硬件为中心的API。虽然它提供了最强大和最灵活的图形处理工具，但它的学习曲线陡峭，对应用程序的整体设计也有重大影响。对于需要高性能图形以进行更多专业用途的应用程序，iOS提供了几个更高级别的框架：</p>
 <ul>
@@ -482,7 +482,7 @@
 <h2 id="EAGL-Sharegroup为上下文管理OpenGL-ES对象"><a href="#EAGL-Sharegroup为上下文管理OpenGL-ES对象" class="headerlink" title="EAGL Sharegroup为上下文管理OpenGL ES对象"></a>EAGL Sharegroup为上下文管理OpenGL ES对象</h2><p> 尽管上下文保存了 OpenGL ES 状态，但它不直接管理 OpenGL ES 对象。相反，OpenGL ES 对象是由 <a href="https://developer.apple.com/documentation/opengles/eaglsharegroup" target="_blank" rel="noopener">EAGLSharegroup</a> 对象创建和维护的。每个上下文都包含一个 <code>EAGLSharegroup</code> 委托对象创建的对象。</p>
 <p>如图2-1所示，当两个或两个以上的上下文引用相同的共享组时，共享组的优点变得明显。当多个上下文连接到一个公共共享组时，任何上下文创建的 OpenGL ES 对象都可用于所有上下文; 如果绑定到与创建它的另一个上下文相同的对象标识符，则引用 <em>相同的</em> OpenGL ES 对象。移动设备上的资源往往很少; 在多个上下文中创建相同内容的多个副本是浪费的。共享公共资源可以更好地利用设备上的可用图形资源。</p>
 <p>共享组是一个不透明的对象; 它没有应用程序可以调用的方法或属性。使用共享组对象的上下文保持强烈的引用。</p>
-<p><img src="eaglContext_eagleSharegroup_2x.png" alt="图2-1   共享OpenGL ES对象的两个上下文"></p>
+<p>图2-1   共享 OpenGL ES 对象的两个上下文<br><img src="https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/eaglContext_eagleSharegroup_2x.png" alt=""></p>
 <p>在两种特定情况下，共享组是最有用的：</p>
 <ul>
 <li>当上下文之间共享的大部分资源不变时。</li>
