@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,OpenGL ES," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tangjz's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。">
+<meta name="keywords" content="iOS,OpenGL ES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL ES Programming Guide&lt;译&gt;">
+<meta property="og:url" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/index.html">
+<meta property="og:site_name" content="Tangjz&#39;s Blog">
+<meta property="og:description" content="Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/About-OpenGL-ES.png">
+<meta property="og:image" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/eaglContext_eagleSharegroup_2x.png">
+<meta property="og:updated_time" content="2018-05-14T09:46:50.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenGL ES Programming Guide&lt;译&gt;">
+<meta name="twitter:description" content="Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。">
+<meta name="twitter:image" content="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/About-OpenGL-ES.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/"/>
+
+
+
+
+
+  <title>OpenGL ES Programming Guide<译> | Tangjz's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tangjz's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="唐健焯">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenGL ES Programming Guide<译></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-14T11:40:00+08:00">
+                2018-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/14/OpenGL-ES-Programming-Guide-译/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/14/OpenGL-ES-Programming-Guide-译/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览次数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Apple 官方《OpenGL ES 编程指南》译文，如有错误，欢迎指正。<br><a id="more"></a></p>
+<h1 id="关于OpenGL-ES"><a href="#关于OpenGL-ES" class="headerlink" title="关于OpenGL ES"></a>关于OpenGL ES</h1><p><em>Open Graphics Library (OpenGL)</em> 用于可视化 2D 和 3D 数据。它是一个多用途开放标准图形库，支持 2D 和 3D 数字内容创建，机械和建筑设计，虚拟样机，飞行模拟，视频游戏等应用。您可以使用 OpenGL 配置 3D 图形管道并向其提交数据。顶点被转换并点亮，组装成图元，并被光栅化以创建 2D 图像。OpenGL 旨在将函数调用转换为可发送到底层图形硬件的图形命令。由于该底层硬件专用于处理图形命令，所以 OpenGL 绘图通常非常快速。</p>
+<p><em>OpenGL for Embedded Systems (OpenGL ES)</em> 是 OpenGL 的简化版本，它消除了冗余功能，提供了一个易于学习和易于在移动图形硬件中实现的库。</p>
+<p><img src="About-OpenGL-ES.png" alt=""></p>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>OpenGL ES 允许应用程序利用底层图形处理器的强大功能。iOS 设备上的 GPU 可以执行复杂的 2D 和 3D 绘图，以及最终图像中每个像素的复杂阴影计算。如果您的应用程序的设计要求需要最直接，最全面地访问 GPU 硬件，则应该使用 OpenGL ES。OpenGL ES 的典型客户端包括呈现 3D 图形的视频游戏和模拟。</p>
+<p>OpenGL ES是一个低级的，以硬件为中心的API。虽然它提供了最强大和最灵活的图形处理工具，但它的学习曲线陡峭，对应用程序的整体设计也有重大影响。对于需要高性能图形以进行更多专业用途的应用程序，iOS提供了几个更高级别的框架：</p>
+<ul>
+<li>Sprite Kit 框架提供了一个为创建2D游戏而优化的硬件加速动画系统。（请参阅 <em>Sprite Kit 编程指南</em>）</li>
+<li>Core Image 框架为静止和视频图像提供实时过滤和分析。（请参阅  <a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185" target="_blank" rel="noopener"><em>Core Image 编程指南</em></a>）</li>
+<li>Core Animation 为所有 iOS 应用程序提供了硬件加速的图形渲染和动画基础结构，以及一个简单的声明式编程模型，使得实现复杂的用户界面动画变得非常简单。（请参阅 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514" target="_blank" rel="noopener"><em>Core Animation 编程指南</em></a>）</li>
+<li>您可以使用 UIKit 框架中的功能为 Cocoa Touch 用户界面添加动画，基于物理的动态特效和其他特殊效果。</li>
+</ul>
+<h3 id="OpenGL-ES是一个在iOS中实现的平台中立的API"><a href="#OpenGL-ES是一个在iOS中实现的平台中立的API" class="headerlink" title="OpenGL ES是一个在iOS中实现的平台中立的API"></a>OpenGL ES是一个在iOS中实现的平台中立的API</h3><p>由于 OpenGL ES 是基于 C 语言的 API，因此非常便携并得到广泛支持。作为 C API，它与 Objective-C Cocoa Touch 应用程序无缝集成。OpenGL ES 规范没有定义窗口层; 相反，托管操作系统必须提供函数来创建一个接受命令的 OpenGL ES <em>渲染上下文</em>  和一个 <em>帧缓冲区</em> ，在该 <em>帧缓冲区</em> 中写入任何绘图命令的结果。在 iOS 上使用 OpenGL ES 需要使用 iOS 类来设置和呈现绘图表面，并使用平台无关的 API 来呈现其内容。</p>
+<p><strong>相关章节：</strong><a href="">用于构建适用于 iOS 的 OpenGL ES 应用程序的清单</a>, <a href="">配置OpenGL ES上下文</a></p>
+<h3 id="GLKit提供绘图表面和动画支持"><a href="#GLKit提供绘图表面和动画支持" class="headerlink" title="GLKit提供绘图表面和动画支持"></a>GLKit提供绘图表面和动画支持</h3><p>由 UIKit 框架定义的视图和视图控制器控制 iOS 上视觉内容的表示。GLKit 框架提供了这些类的 OpenGL ES 感知版本。当您开发 OpenGL ES 应用程序时，您可以使用 <a href="https://developer.apple.com/documentation/glkit/glkview" target="_blank" rel="noopener">GLKView</a> 对象来渲染 OpenGL ES 内容。您还可以使用 <a href="https://developer.apple.com/documentation/glkit/glkviewcontroller" target="_blank" rel="noopener">GLKViewController</a> 对象来管理您的视图并支持对其内容进行动画制作。</p>
+<p><strong>相关章节：</strong> <a href="">使用OpenGL ES和GLKit进行绘图</a></p>
+<h3 id="iOS支持可选的渲染目标"><a href="#iOS支持可选的渲染目标" class="headerlink" title="iOS支持可选的渲染目标"></a>iOS支持可选的渲染目标</h3><p>除了绘制内容以填充整个屏幕或视图层次结构的一部分外，还可以将 OpenGL ES 帧缓冲区对象用于其他呈现策略。iOS 实现标准的 OpenGL ES framebuffer 对象，您可以将其用于渲染到屏幕外缓冲区或用于 OpenGL ES 场景中其他位置的纹理。另外，iOS上的 OpenGL ES 支持渲染到核心动画层（<a href="https://developer.apple.com/documentation/quartzcore/caeagllayer" target="_blank" rel="noopener">CAEAGLLayer</a>类），然后您可以将其与其他图层结合以构建应用的用户界面或其他视觉显示。</p>
+<p><strong>相关章节：</strong> <a href="">绘制到其他渲染目标</a></p>
+<h3 id="应用需要额外的性能调整"><a href="#应用需要额外的性能调整" class="headerlink" title="应用需要额外的性能调整"></a>应用需要额外的性能调整</h3><p>图形处理器是针对图形操作进行优化的并行设备。为了在您的应用中获得出色的性能，您必须仔细设计应用，将数据和命令提供给 OpenGL ES，以便图形硬件与您的应用并行运行。一个调整得不好的应用会迫使 CPU 或 GPU 等待另一个完成处理命令。</p>
+<p>您应该设计您的应用程序以有效使用 OpenGL ES API。完成构建应用程序后，使用 “ <strong>Instruments</strong> ” 来微调应用程序的性能。如果您的应用程序在OpenGL ES中受到瓶颈，请使用本指南中提供的信息来优化您的应用程序的性能。</p>
+<p>Xcode 提供的工具可以帮助您提高 OpenGL ES 应用程序的性能。</p>
+<p><strong>相关章节：</strong><a href="">OpenGL ES设计指南</a>，<a href="">使用顶点数据的最佳实践</a>，<a href="">处理纹理数据的最佳实践</a>，<a href="">着色器的最佳实践</a>，<a href="">调整您的OpenGL ES应用程序</a></p>
+<h3 id="OpenGL-ES可能不适用于后台应用程序"><a href="#OpenGL-ES可能不适用于后台应用程序" class="headerlink" title="OpenGL ES可能不适用于后台应用程序"></a>OpenGL ES可能不适用于后台应用程序</h3><p>在后台运行的应用程序可能不会调用 OpenGL ES 函数。如果您的应用在后台访问图形处理器，它将自动由 iOS 终止。为了避免这种情况，您的应用程序应该先移交之前提交给 OpenGL ES 的所有待处理命令，然后再将其移至背景中，并避免调用 OpenGL ES，直到移回到前台。</p>
+<p><strong>相关章节：</strong><a href="">多任务，高分辨率和其他 iOS 功能</a></p>
+<h3 id="OpenGL-ES对多线程应用程序增加了额外的限制"><a href="#OpenGL-ES对多线程应用程序增加了额外的限制" class="headerlink" title="OpenGL ES对多线程应用程序增加了额外的限制"></a>OpenGL ES对多线程应用程序增加了额外的限制</h3><p>设计应用程序以利用并发性可以帮助提高应用程序的性能。如果您打算将并发性添加到 OpenGL ES 应用程序，则必须确保它不会同时从两个不同的线程访问相同的上下文。</p>
+<p><strong>相关章节：</strong><a href="">并发性和 OpenGL ES</a></p>
+<h2 id="如何使用此文档"><a href="#如何使用此文档" class="headerlink" title="如何使用此文档"></a>如何使用此文档</h2><p>首先阅读前三章：<a href="">用于构建 iOS 的 OpenGL ES 应用程序的清单</a>，<a href="">配置 OpenGL ES上下文</a>，<a href="">使用OpenGL ES和GLKit进行绘图</a>。这些章节概述了 OpenGL ES 如何与 iOS 集成，以及如何在 iOS 设备上启动并运行第一批 OpenGL ES 应用程序所需的所有详细信息。</p>
+<p>如果您熟悉在 iOS 中使用 OpenGL ES 的基本知识，请阅读<a href="">绘制到其他渲染目标</a>和<a href="">多任务处理，高分辨率和其他iOS功能</a>以了解重要的特定于平台的准则。熟悉在 5.0 之前的 iOS 版本中使用 OpenGL ES 的开发人员应该学习<a href="">使用 OpenGL ES 和GLKit 进行绘图</a>，以了解用于简化 OpenGL ES 开发的新功能的详细信息。</p>
+<p>最后，阅读 <a href=""> OpenGL ES 设计指南</a>，<a href="">调整您的 OpenGL ES 应用程序</a>，以及以下章节深入探讨如何设计高效的 OpenGL ES 应用程序。</p>
+<p>除非另有说明，否则本书中的 OpenGL ES 代码示例将针对 OpenGL ES 3.0。您可能需要进行更改才能将这些代码示例与其他 OpenGL ES 版本一起使用。</p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>在尝试使用 OpenGL ES 之前，您应该已经熟悉一般的 iOS 应用程序体系结构。请参阅 <em>Start Developing iOS Apps Today</em>。</p>
+<p>本文档不是针对跨平台 OpenGL ES API 的完整教程或参考。要了解更多关于OpenGL ES的信息，请参考下面的参考资料。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>OpenGL ES 是由 Khronos Group 定义的开放标准。有关 OpenGL ES 标准的更多信息，请参阅他们的网页 <a href="http://www.khronos.org/opengles/" target="_blank" rel="noopener">http://www.khronos.org/opengles/</a>。</p>
+<ul>
+<li>Addison-Wesley 出版的 <em>OpenGL® ES 3.0 Programming Guide</em> 全面介绍了 OpenGL ES 的概念。</li>
+<li>由 Addison-Wesley 发布的 <em>OpenGL® Shading Language, Third Edition</em> 提供了许多可在 OpenGL ES 应用程序中使用的着色算法。您可能需要修改其中一些算法以在移动图形处理器上高效运行。</li>
+<li><a href="http://www.khronos.org/registry/gles/" target="_blank" rel="noopener">OpenGL ES API Registry</a> 是 OpenGL ES 规范，OpenGL ES 着色语言规范和 OpenGL ES 扩展的文档的官方存储库。</li>
+<li><a href="https://developer.apple.com/documentation/opengles" target="_blank" rel="noopener">OpenGL ES Framework Reference</a> 介绍了Apple 提供的用于将 OpenGL ES 集成到 iOS 中的特定于平台的功能和类。</li>
+<li><a href="https://developer.apple.com/library/content/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599" target="_blank" rel="noopener">iOS设备兼容性参考</a>提供了有关可用于您的应用的硬件和软件功能的更多详细信息</li>
+<li><a href="https://developer.apple.com/documentation/glkit" target="_blank" rel="noopener">GLKit Framework Reference</a> 描述了 Apple 提供的框架，以便开发 OpenGL ES 2.0 和 3.0 应用程序。</li>
+</ul>
+<h1 id="用于构建适用于iOS的OpenGL-ES应用程序的清单"><a href="#用于构建适用于iOS的OpenGL-ES应用程序的清单" class="headerlink" title="用于构建适用于iOS的OpenGL ES应用程序的清单"></a>用于构建适用于iOS的OpenGL ES应用程序的清单</h1><p>OpenGL ES 规范定义了一个独立于平台的 API，用于使用 GPU 硬件渲染图形。实现 OpenGL ES 的平台为执行 OpenGL ES 命令提供渲染上下文，用于保存渲染结果的帧缓冲区以及呈现帧缓冲区内容的一个或多个渲染目标。在 iOS 中，<a href="https://developer.apple.com/documentation/opengles/eaglcontext" target="_blank" rel="noopener">EAGLContext</a> 该类实现了渲染上下文。iOS 仅提供一种类型的帧缓冲区，OpenGL ES 帧缓冲区对象 <a href="https://developer.apple.com/documentation/glkit/glkview" target="_blank" rel="noopener">GLKView</a> 以及 <a href="https://developer.apple.com/documentation/quartzcore/caeagllayer" target="_blank" rel="noopener">CAEAGLLayer</a> 实现渲染目标的类。</p>
+<p>在 iOS 中构建 OpenGL ES 应用程序需要考虑几个问题，其中一些是 OpenGL ES 编程通用的，其中一些针对 iOS。按照此清单和下面的详细部分开始使用：</p>
+<ol>
+<li>确定哪些版本的 OpenGL ES 为您的应用程序设置了正确的功能，并创建 OpenGL ES 上下文。</li>
+<li>在运行时验证设备是否支持您要使用的 OpenGL ES 功能。</li>
+<li>选择渲染 OpenGL ES 内容的位置。</li>
+<li>确保您的应用在 iOS 中正常运行。</li>
+<li>实现你的渲染引擎。</li>
+<li>使用 Xcode 和 Instruments 调试您的 OpenGL ES 应用程序并调整它以获得最佳性能。</li>
+</ol>
+<h2 id="选择支持哪些OpenGL-ES版本"><a href="#选择支持哪些OpenGL-ES版本" class="headerlink" title="选择支持哪些OpenGL ES版本"></a>选择支持哪些OpenGL ES版本</h2><p>确定您的应用是否应该支持 OpenGL ES 3.0，OpenGL ES 2.0，OpenGL ES 1.1 或多个版本。</p>
+<ul>
+<li>OpenGL ES 3.0 是 iOS 7 中的新功能。它增加了许多新功能，可以实现更高性能，通用 GPU 计算技术以及以前只能在桌面级硬件和游戏控制台上实现的更复杂的视觉效果。</li>
+<li>OpenGL ES 2.0 是 iOS 设备的基准配置文件，具有基于可编程着色器的可配置图形管道。</li>
+<li>OpenGL ES 1.1 只提供了一个基本的固定功能图形管道，并且在 iOS 中主要用于向后兼容。</li>
+</ul>
+<p>您应该定位支持与您的应用程序最相关的功能和设备的 OpenGL ES 的一个或多个版本。要了解有关 iOS 设备的 OpenGL ES 功能的更多信息，请阅读 <a href="https://developer.apple.com/library/content/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599" target="_blank" rel="noopener"><em>iOS设备兼容性参考</em></a>。</p>
+<p>要为计划支持的OpenGL ES版本创建上下文，请阅读<a href="">配置OpenGL ES上下文</a>。要了解您所选择的OpenGL ES版本与您可能在您的应用中使用的渲染算法的关系，请阅读 <a href="">OpenGL ES 版本和渲染器架构</a>。</p>
+<h2 id="验证OpenGL-ES兼容性"><a href="#验证OpenGL-ES兼容性" class="headerlink" title="验证OpenGL ES兼容性"></a>验证OpenGL ES兼容性</h2><p><a href="https://developer.apple.com/library/content/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599" target="_blank" rel="noopener"><em>iOS设备兼容性参考</em></a> 汇总了 iOS设备 的可用功能和扩展。但是，为了让您的应用在尽可能多的设备和iOS版本上运行，您的应用应始终在运行时查询 OpenGL ES 实现的兼容性。</p>
+<p>要确定特定于实现的限制（例如最大纹理大小或顶点属性的最大数量），请使用适当的函数为其数据类型查找相应标记的值（例如 <code>MAX_TEXTURE_SIZE</code> 或 <code>MAX_VERTEX_ATTRIBS</code>，如 <code>gl.h</code> 标题中所示）<code>glGet</code>。</p>
+<p>要检查 OpenGL ES 3.0 扩展，请使用以下代码示例中的 <code>glGetIntegerv</code> 和 <code>glGetStringi</code> 函数：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> CheckForExtension(<span class="built_in">NSString</span> *searchName)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Create a set containing all extension names.</span></span><br><span class="line">    <span class="comment">// (For better performance, create the set only once and cache it for future use.)</span></span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    glGetIntegerv(GL_NUM_EXTENSIONS, &amp;max);</span><br><span class="line">    <span class="built_in">NSMutableSet</span> *extensions = [<span class="built_in">NSMutableSet</span> set];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; max; i++) &#123;</span><br><span class="line">        [extensions addObject: @( (<span class="keyword">char</span> *)glGetStringi(GL_EXTENSIONS, i) )];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [extensions containsObject: searchName];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要检查 OpenGL ES 1.1 和 2.0 扩展名，请调用 <code>glGetString(GL_EXTENSIONS)</code> 以获取所有扩展名的空格分隔列表。</p>
+<h2 id="选择一个渲染目标"><a href="#选择一个渲染目标" class="headerlink" title="选择一个渲染目标"></a>选择一个渲染目标</h2><p>在 iOS 中，帧缓冲区对象存储绘图命令的结果。（iOS 不实现窗口系统提供的帧缓冲区。）可以以多种方式使用帧缓冲区对象的内容：</p>
+<ul>
+<li>GLKit 框架提供了一个视图，该视图绘制 OpenGL ES 内容并管理其自己的帧缓冲区对象，以及支持动画 OpenGL ES 内容的视图控制器。使用这些类创建全屏视图或将您的 OpenGL ES 内容合并到 UIKit 视图层次结构中。要了解这些类，请阅读<a href="">使用OpenGL ES和GLKit绘图</a>。</li>
+<li><a href="https://developer.apple.com/documentation/quartzcore/caeagllayer" target="_blank" rel="noopener">CAEAGLLayer</a> 类提供了一种绘制的 OpenGL ES 内容作为核心动画层组合物的一部分。使用此类时，您必须创建自己的帧缓冲区对象。</li>
+<li>与任何 OpenGL ES 实现一样，您还可以使用帧缓冲器进行离屏图形处理或渲染纹理，以用于图形管道中的其他位置。借助 OpenGL ES 3.0，可以在使用多个渲染目标的渲染算法中使用屏幕外缓冲区。</li>
+</ul>
+<p>要了解有关渲染到屏幕外缓冲区，纹理或 Core Animation 图层的信息，请阅读<a href="">绘制到其他渲染目标</a>。</p>
+<h2 id="与iOS集成"><a href="#与iOS集成" class="headerlink" title="与iOS集成"></a>与iOS集成</h2><p>iOS 应用程序默认支持多任务处理，但在 OpenGL ES 应用程序中正确处理此功能需要额外考虑。不正确地使用 OpenGL ES 会导致您的应用在后台被系统杀死。</p>
+<p>许多 iOS 设备都包含高分辨率显示器，因此您的应用应支持多种显示屏尺寸和分辨率。</p>
+<p>要了解支持这些和其他iOS功能的信息，请阅读<a href="">多任务处理，高分辨率和其他iOS功能</a>。</p>
+<h2 id="实现渲染引擎"><a href="#实现渲染引擎" class="headerlink" title="实现渲染引擎"></a>实现渲染引擎</h2><p>设计 OpenGL ES 绘图代码有许多可能的策略，其全部细节超出了本文的范围。渲染引擎设计的许多方面对于 OpenGL 和 OpenGL ES 的所有实现都是通用的。</p>
+<p>要了解 iOS 设备的重要设计注意事项，请阅读 <a href="">OpenGL ES 设计指南</a>和<a href="">并发性和 OpenGL ES</a>。</p>
+<h2 id="调试和分析"><a href="#调试和分析" class="headerlink" title="调试和分析"></a>调试和分析</h2><p>Xcode和 Instruments 提供了许多工具来跟踪渲染问题并分析应用程序中的 OpenGL ES 性能。</p>
+<p>要详细了解解决问题并提高 OpenGL ES 应用程序的性能，请阅读<a href="">调整OpenGL ES应用程序</a>。</p>
+<h1 id="配置OpenGL-ES上下文"><a href="#配置OpenGL-ES上下文" class="headerlink" title="配置OpenGL ES上下文"></a>配置OpenGL ES上下文</h1><p>OpenGL ES 的每个实现都提供了一种创建渲染上下文来管理 OpenGL ES 规范所需状态的方法。通过将上述状态置于上下文中，多个应用程序可以轻松共享图形硬件而不会干扰其他状态。</p>
+<p>本章详细介绍如何在 iOS 上创建和配置上下文。</p>
+<h2 id="EAGL是OpenGL-ES渲染上下文的iOS实现"><a href="#EAGL是OpenGL-ES渲染上下文的iOS实现" class="headerlink" title="EAGL是OpenGL ES渲染上下文的iOS实现"></a>EAGL是OpenGL ES渲染上下文的iOS实现</h2><p>在您的应用程序可以调用任何 OpenGL ES 函数之前，它必须初始化一个 <a href="https://developer.apple.com/documentation/opengles/eaglcontext" target="_blank" rel="noopener">EAGLContext</a> 对象。<code>EAGLContext</code> 类还提供用于 OpenGL ES 的内容与核心动画结合的方法。</p>
+<h2 id="当前上下文是OpenGL-ES函数调用的目标"><a href="#当前上下文是OpenGL-ES函数调用的目标" class="headerlink" title="当前上下文是OpenGL ES函数调用的目标"></a>当前上下文是OpenGL ES函数调用的目标</h2><p>iOS 应用程序中的每个线程都有一个当前上下文; 当您调用 OpenGL ES 函数时，这是其调用状态发生更改的上下文。</p>
+<p>要设置线程的当前上下文，请在该线程上执行时调用 <code>EAGLContext</code> 类方法 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624882-setcurrent" target="_blank" rel="noopener">setCurrentContext:</a>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[EAGLContext setCurrentContext：myContext];</span><br></pre></td></tr></table></figure>
+<p>调用 <code>EAGLContext</code> 类方法 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624880-current" target="_blank" rel="noopener">currentContext</a> 来检索线程的当前上下文。</p>
+<blockquote>
+<p>注意：如果您的应用程序在同一个线程上的两个或更多个上下文之间主动切换，请 <code>glFlush</code> 在将新上下文设置为当前上下文之前调用该函数。这确保以前提交的命令及时传送到图形硬件。</p>
+</blockquote>
+<p>OpenGL ES <code>EAGLContext</code> 对与当前上下文对应的对象有强引用。（如果您正在使用手动引用计数，则 OpenGL ES 将保留此对象。）当您调用 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624882-setcurrent" target="_blank" rel="noopener">setCurrentContext:</a> 方法来更改当前上下文时，OpenGL ES 不再引用上一个上下文。（如果您正在使用手动引用计数，则 OpenGL ES 会释放该 <code>EAGLContext</code> 对象。）为防止 <code>EAGLContext</code> 在不是当前上下文时释放对象，应用程序必须对这些对象进行强引用（或保留）。</p>
+<h2 id="每个上下文都针对特定版本的OpenGL-ES"><a href="#每个上下文都针对特定版本的OpenGL-ES" class="headerlink" title="每个上下文都针对特定版本的OpenGL ES"></a>每个上下文都针对特定版本的OpenGL ES</h2><p>一个 <code>EAGLContext</code> 对象只支持一个版本的 OpenGL ES。例如，为 OpenGL ES 1.1 编写的代码与 OpenGL ES 2.0 或 3.0 上下文不兼容。使用核心 OpenGL ES 2.0 功能的代码与 OpenGL ES 3.0 上下文兼容，并且为 OpenGL ES 2.0 扩展设计的代码通常可以在 OpenGL ES 3.0 上下文中使用，只需稍作更改。许多新的 OpenGL ES 3.0 功能和增强的硬件功能需要 OpenGL ES 3.0 上下文。</p>
+<p>您的应用程序决定时，它支持哪种 OpenGL ES 的版本创建和初始化的 <code>EAGLContext</code> 对象。如果设备不支持所请求的OpenGL ES版本，则该 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624895-init" target="_blank" rel="noopener">initWithAPI:</a> 方法返回 <code>nil</code>。在使用它之前，您的应用必须进行测试以确保上下文已成功初始化。</p>
+<p>要在应用程序中支持多个版本的 OpenGL ES 作为渲染选项，应首先尝试初始化要定位的最新版本的渲染上下文。如果返回的对象是 <code>nil</code>，则改为初始化旧版本的上下文。清单2-1演示了如何执行此操作。</p>
+<p><strong>清单2-1</strong>   在同一个应用程序中支持多个版本的 OpenGL ES</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EAGLContext* CreateBestEAGLContext()</span><br><span class="line">&#123;</span><br><span class="line">   EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];</span><br><span class="line">   <span class="keyword">if</span> (context == <span class="literal">nil</span>) &#123;</span><br><span class="line">      context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> context;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上下文 context 的 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624885-api" target="_blank" rel="noopener">API</a> 属性指定上下文支持哪种版本的 OpenGL ES。您的应用程序应测试上下文的 <code>API</code> 属性并使用它来选择正确的呈现路径。实现此行为的常见模式是为每个呈现路径创建一个类。您的应用程序在初始化时测试上下文并创建一次渲染器。</p>
+<h2 id="EAGL-Sharegroup为上下文管理OpenGL-ES对象"><a href="#EAGL-Sharegroup为上下文管理OpenGL-ES对象" class="headerlink" title="EAGL Sharegroup为上下文管理OpenGL ES对象"></a>EAGL Sharegroup为上下文管理OpenGL ES对象</h2><p> 尽管上下文保存了 OpenGL ES 状态，但它不直接管理 OpenGL ES 对象。相反，OpenGL ES 对象是由 <a href="https://developer.apple.com/documentation/opengles/eaglsharegroup" target="_blank" rel="noopener">EAGLSharegroup</a> 对象创建和维护的。每个上下文都包含一个 <code>EAGLSharegroup</code> 委托对象创建的对象。</p>
+<p>如图2-1所示，当两个或两个以上的上下文引用相同的共享组时，共享组的优点变得明显。当多个上下文连接到一个公共共享组时，任何上下文创建的 OpenGL ES 对象都可用于所有上下文; 如果绑定到与创建它的另一个上下文相同的对象标识符，则引用 <em>相同的</em> OpenGL ES 对象。移动设备上的资源往往很少; 在多个上下文中创建相同内容的多个副本是浪费的。共享公共资源可以更好地利用设备上的可用图形资源。</p>
+<p>共享组是一个不透明的对象; 它没有应用程序可以调用的方法或属性。使用共享组对象的上下文保持强烈的引用。</p>
+<p><img src="eaglContext_eagleSharegroup_2x.png" alt="图2-1   共享OpenGL ES对象的两个上下文"></p>
+<p>在两种特定情况下，共享组是最有用的：</p>
+<ul>
+<li>当上下文之间共享的大部分资源不变时。</li>
+<li>当您希望您的应用程序能够在渲染器的主线程以外的线程上创建新的 OpenGL ES 对象时。在这种情况下，第二个上下文运行在单独的线程上，专门用于获取数据和创建资源。资源加载后，第一个上下文可以绑定到对象并立即使用它。<a href="https://developer.apple.com/documentation/glkit/glktextureloader" target="_blank" rel="noopener">GLKTextureLoader</a> 类使用此模式提供异步纹理加载。</li>
+</ul>
+<p>要创建引用相同共享组的多个上下文，第一个上下文通过调用进行初始化 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624895-init" target="_blank" rel="noopener">initWithAPI:</a> ; 会自动为上下文创建共享组。通过调用该 <a href="https://developer.apple.com/documentation/opengles/eaglcontext/1624877-initwithapi" target="_blank" rel="noopener">initWithAPI:sharegroup:</a> 方法，第二个和更高的上下文被初始化为使用第一个上下文的共享组。清单2-2显示了这将如何工作。第一个上下文是使用清单2-1中定义的便利函数创建的。第二个上下文是通过从第一个上下文中提取API版本和共享组创建的。</p>
+<blockquote>
+<p><strong>重要提示：</strong>  与同一共享组关联的所有上下文必须使用与初始上下文相同版本的OpenGL ES API。</p>
+</blockquote>
+<p><strong>清单2-2</strong>   使用公共共享组创建两个上下文</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EAGLContext* firstContext = CreateBestEAGLContext();</span><br><span class="line">EAGLContext* secondContext = [[EAGLContext alloc] initWithAPI:[firstContext API] sharegroup: [firstContext sharegroup]];</span><br></pre></td></tr></table></figure>
+<p>当共享组由多个上下文共享时，您的应用程序有责任管理对 OpenGL ES 对象的状态更改。这是规则：</p>
+<ul>
+<li>如果对象未被修改，您的应用程序可以同时访问多个上下文中的对象。</li>
+<li>当对象被发送到上下文的命令修改时，不得在任何其他上下文中读取或修改该对象。</li>
+<li>对象修改后，所有上下文都必须重新绑定对象才能看到更改。如果上下文在绑定它之前引用它，则该对象的内容是未定义的。</li>
+</ul>
+<p>以下是您的应用程序应该遵循的更新 OpenGL ES 对象的步骤：</p>
+<ol>
+<li>调用 <code>glFlush</code> 每个可能使用该对象的上下文。</li>
+<li>在想要修改对象的上下文中，调用一个或多个 OpenGL ES 函数来更改对象。</li>
+<li>调用 <code>glFlush</code> 接收状态修改命令的上下文。</li>
+<li>在其他任何情况下，重新绑定对象标识符。</li>
+</ol>
+<blockquote>
+<p><strong>注意：</strong>  共享对象的另一种方式是使用单个渲染上下文，但使用多个目标帧缓冲区。在渲染时，您的应用会绑定相应的帧缓冲区并根据需要渲染其帧。由于所有OpenGL ES对象都是从单个上下文中引用的，因此它们会看到相同的OpenGL ES数据。此模式使用的资源较少，但仅适用于单线程应用程序，您可以在其中仔细控制上下文的状态。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/OpenGL-ES/" rel="tag"># OpenGL ES</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/20/Golang-笔记/" rel="next" title="Golang 笔记">
+                <i class="fa fa-chevron-left"></i> Golang 笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/headImg.jpg"
+                alt="唐健焯" />
+            
+              <p class="site-author-name" itemprop="name">唐健焯</p>
+              <p class="site-description motion-element" itemprop="description">不会摄影的设计师不是个好码农！(´･_･`)</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/JanzTam" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/JanzTam" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/61073715" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于OpenGL-ES"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;OpenGL-ES" class="headerlink" title="&#x5173;&#x4E8E;OpenGL ES"></a>&#x5173;&#x4E8E;OpenGL ES</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概览"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x6982;&#x89C8;" class="headerlink" title="&#x6982;&#x89C8;"></a>&#x6982;&#x89C8;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-ES是一个在iOS中实现的平台中立的API"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#OpenGL-ES&#x662F;&#x4E00;&#x4E2A;&#x5728;iOS&#x4E2D;&#x5B9E;&#x73B0;&#x7684;&#x5E73;&#x53F0;&#x4E2D;&#x7ACB;&#x7684;API" class="headerlink" title="OpenGL ES&#x662F;&#x4E00;&#x4E2A;&#x5728;iOS&#x4E2D;&#x5B9E;&#x73B0;&#x7684;&#x5E73;&#x53F0;&#x4E2D;&#x7ACB;&#x7684;API"></a>OpenGL ES&#x662F;&#x4E00;&#x4E2A;&#x5728;iOS&#x4E2D;&#x5B9E;&#x73B0;&#x7684;&#x5E73;&#x53F0;&#x4E2D;&#x7ACB;&#x7684;API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GLKit提供绘图表面和动画支持"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#GLKit&#x63D0;&#x4F9B;&#x7ED8;&#x56FE;&#x8868;&#x9762;&#x548C;&#x52A8;&#x753B;&#x652F;&#x6301;" class="headerlink" title="GLKit&#x63D0;&#x4F9B;&#x7ED8;&#x56FE;&#x8868;&#x9762;&#x548C;&#x52A8;&#x753B;&#x652F;&#x6301;"></a>GLKit&#x63D0;&#x4F9B;&#x7ED8;&#x56FE;&#x8868;&#x9762;&#x548C;&#x52A8;&#x753B;&#x652F;&#x6301;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS支持可选的渲染目标"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#iOS&#x652F;&#x6301;&#x53EF;&#x9009;&#x7684;&#x6E32;&#x67D3;&#x76EE;&#x6807;" class="headerlink" title="iOS&#x652F;&#x6301;&#x53EF;&#x9009;&#x7684;&#x6E32;&#x67D3;&#x76EE;&#x6807;"></a>iOS&#x652F;&#x6301;&#x53EF;&#x9009;&#x7684;&#x6E32;&#x67D3;&#x76EE;&#x6807;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用需要额外的性能调整"><span class="nav-number">1.1.4.</span> <span class="nav-text"><a href="#&#x5E94;&#x7528;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x6027;&#x80FD;&#x8C03;&#x6574;" class="headerlink" title="&#x5E94;&#x7528;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x6027;&#x80FD;&#x8C03;&#x6574;"></a>&#x5E94;&#x7528;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x6027;&#x80FD;&#x8C03;&#x6574;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-ES可能不适用于后台应用程序"><span class="nav-number">1.1.5.</span> <span class="nav-text"><a href="#OpenGL-ES&#x53EF;&#x80FD;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x540E;&#x53F0;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;" class="headerlink" title="OpenGL ES&#x53EF;&#x80FD;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x540E;&#x53F0;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;"></a>OpenGL ES&#x53EF;&#x80FD;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x540E;&#x53F0;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-ES对多线程应用程序增加了额外的限制"><span class="nav-number">1.1.6.</span> <span class="nav-text"><a href="#OpenGL-ES&#x5BF9;&#x591A;&#x7EBF;&#x7A0B;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x589E;&#x52A0;&#x4E86;&#x989D;&#x5916;&#x7684;&#x9650;&#x5236;" class="headerlink" title="OpenGL ES&#x5BF9;&#x591A;&#x7EBF;&#x7A0B;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x589E;&#x52A0;&#x4E86;&#x989D;&#x5916;&#x7684;&#x9650;&#x5236;"></a>OpenGL ES&#x5BF9;&#x591A;&#x7EBF;&#x7A0B;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x589E;&#x52A0;&#x4E86;&#x989D;&#x5916;&#x7684;&#x9650;&#x5236;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用此文档"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6B64;&#x6587;&#x6863;" class="headerlink" title="&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6B64;&#x6587;&#x6863;"></a>&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6B64;&#x6587;&#x6863;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先决条件"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5148;&#x51B3;&#x6761;&#x4EF6;" class="headerlink" title="&#x5148;&#x51B3;&#x6761;&#x4EF6;"></a>&#x5148;&#x51B3;&#x6761;&#x4EF6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用于构建适用于iOS的OpenGL-ES应用程序的清单"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x9002;&#x7528;&#x4E8E;iOS&#x7684;OpenGL-ES&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6E05;&#x5355;" class="headerlink" title="&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x9002;&#x7528;&#x4E8E;iOS&#x7684;OpenGL ES&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6E05;&#x5355;"></a>&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x9002;&#x7528;&#x4E8E;iOS&#x7684;OpenGL ES&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6E05;&#x5355;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择支持哪些OpenGL-ES版本"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x9009;&#x62E9;&#x652F;&#x6301;&#x54EA;&#x4E9B;OpenGL-ES&#x7248;&#x672C;" class="headerlink" title="&#x9009;&#x62E9;&#x652F;&#x6301;&#x54EA;&#x4E9B;OpenGL ES&#x7248;&#x672C;"></a>&#x9009;&#x62E9;&#x652F;&#x6301;&#x54EA;&#x4E9B;OpenGL ES&#x7248;&#x672C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证OpenGL-ES兼容性"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;OpenGL-ES&#x517C;&#x5BB9;&#x6027;" class="headerlink" title="&#x9A8C;&#x8BC1;OpenGL ES&#x517C;&#x5BB9;&#x6027;"></a>&#x9A8C;&#x8BC1;OpenGL ES&#x517C;&#x5BB9;&#x6027;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择一个渲染目标"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x6E32;&#x67D3;&#x76EE;&#x6807;" class="headerlink" title="&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x6E32;&#x67D3;&#x76EE;&#x6807;"></a>&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x6E32;&#x67D3;&#x76EE;&#x6807;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与iOS集成"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x4E0E;iOS&#x96C6;&#x6210;" class="headerlink" title="&#x4E0E;iOS&#x96C6;&#x6210;"></a>&#x4E0E;iOS&#x96C6;&#x6210;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现渲染引擎"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#&#x5B9E;&#x73B0;&#x6E32;&#x67D3;&#x5F15;&#x64CE;" class="headerlink" title="&#x5B9E;&#x73B0;&#x6E32;&#x67D3;&#x5F15;&#x64CE;"></a>&#x5B9E;&#x73B0;&#x6E32;&#x67D3;&#x5F15;&#x64CE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试和分析"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#&#x8C03;&#x8BD5;&#x548C;&#x5206;&#x6790;" class="headerlink" title="&#x8C03;&#x8BD5;&#x548C;&#x5206;&#x6790;"></a>&#x8C03;&#x8BD5;&#x548C;&#x5206;&#x6790;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置OpenGL-ES上下文"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x914D;&#x7F6E;OpenGL-ES&#x4E0A;&#x4E0B;&#x6587;" class="headerlink" title="&#x914D;&#x7F6E;OpenGL ES&#x4E0A;&#x4E0B;&#x6587;"></a>&#x914D;&#x7F6E;OpenGL ES&#x4E0A;&#x4E0B;&#x6587;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EAGL是OpenGL-ES渲染上下文的iOS实现"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#EAGL&#x662F;OpenGL-ES&#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587;&#x7684;iOS&#x5B9E;&#x73B0;" class="headerlink" title="EAGL&#x662F;OpenGL ES&#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587;&#x7684;iOS&#x5B9E;&#x73B0;"></a>EAGL&#x662F;OpenGL ES&#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587;&#x7684;iOS&#x5B9E;&#x73B0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当前上下文是OpenGL-ES函数调用的目标"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5F53;&#x524D;&#x4E0A;&#x4E0B;&#x6587;&#x662F;OpenGL-ES&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x76EE;&#x6807;" class="headerlink" title="&#x5F53;&#x524D;&#x4E0A;&#x4E0B;&#x6587;&#x662F;OpenGL ES&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x76EE;&#x6807;"></a>&#x5F53;&#x524D;&#x4E0A;&#x4E0B;&#x6587;&#x662F;OpenGL ES&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x76EE;&#x6807;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个上下文都针对特定版本的OpenGL-ES"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x6BCF;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#x90FD;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x7684;OpenGL-ES" class="headerlink" title="&#x6BCF;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#x90FD;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x7684;OpenGL ES"></a>&#x6BCF;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#x90FD;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x7684;OpenGL ES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EAGL-Sharegroup为上下文管理OpenGL-ES对象"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#EAGL-Sharegroup&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x7BA1;&#x7406;OpenGL-ES&#x5BF9;&#x8C61;" class="headerlink" title="EAGL Sharegroup&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x7BA1;&#x7406;OpenGL ES&#x5BF9;&#x8C61;"></a>EAGL Sharegroup&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x7BA1;&#x7406;OpenGL ES&#x5BF9;&#x8C61;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">唐健焯</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://janztam.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tangjz.cc/2018/05/14/OpenGL-ES-Programming-Guide-译/';
+          this.page.identifier = '2018/05/14/OpenGL-ES-Programming-Guide-译/';
+          this.page.title = 'OpenGL ES Programming Guide<译>';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://janztam.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
