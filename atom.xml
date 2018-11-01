@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tangjz.cc/"/>
-  <updated>2018-04-27T10:36:31.847Z</updated>
+  <updated>2018-11-01T08:53:11.395Z</updated>
   <id>http://tangjz.cc/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Failed to connect to GitHub to update...</title>
+    <link href="http://tangjz.cc/2018/11/01/Failed-to-connect-to-GitHub-to-update/"/>
+    <id>http://tangjz.cc/2018/11/01/Failed-to-connect-to-GitHub-to-update/</id>
+    <published>2018-11-01T08:18:29.000Z</published>
+    <updated>2018-11-01T08:53:11.395Z</updated>
+    
+    <content type="html"><![CDATA[<p>更新 Cocoapods 本地索引，报错了：</p><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ pod repo update</span><br><span class="line">Updating spec repo `master`</span><br><span class="line">[!] Failed to connect to GitHub to update the CocoaPods/Specs specs repo </span><br><span class="line">- Please check if you are offline, or that GitHub is down</span><br></pre></td></tr></table></figure><p>谷歌了不少解决方案，尝试过更新 openssl,  ruby,  cocoapod，还是不行。</p><p>过了许久，突然找到了解决方案。原来是终端代理的问题。将终端代理临时去掉，就可以了！</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在 .bashrc 或者 .zshrc 里 将终端代理注释掉</span><br><span class="line">#export http_proxy=&quot;socks5://0.0.0.0:8889&quot;</span><br><span class="line">#export https_proxy=&quot;socks5://0.0.0.0:8889&quot;</span><br></pre></td></tr></table></figure><p>再试试</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod repo update</span><br></pre></td></tr></table></figure><p>现在应该就可以了～</p><p>我在使用 Carthage 配置第三方库的时候也遇到类似的问题，也是如此解决～</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Falling back to building from the source</span><br><span class="line">***  Skipped installing NEKit.framework binary due to the error:</span><br><span class="line">&quot;GitHub API request failed: networkError(Error Domain=NSURLErrorDomain Code=-1005 &quot;The network connection was lost.&quot; </span><br><span class="line">UserInfo=&#123;NSUnderlyingError=0x7fb3a2f3c980 &#123;Error Domain=kCFErrorDomainCFNetwork Code=-1005 &quot;(null)&quot; </span><br><span class="line">UserInfo=&#123;_kCFStreamErrorCodeKey=-4, _kCFStreamErrorDomainKey=4&#125;&#125;, </span><br><span class="line">NSErrorFailingURLStringKey=https://api.github.com/repos/zhuhaow/NEKit/releases/tags/0.13.0?, </span><br><span class="line">NSErrorFailingURLKey=https://api.github.com/repos/zhuhaow/NEKit/releases/tags/0.13.0?, </span><br><span class="line">_kCFStreamErrorDomainKey=4, _kCFStreamErrorCodeKey=-4, NSLocalizedDescription=The network connection was lost.&#125;)&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;更新 Cocoapods 本地索引，报错了：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="开发" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="iOS" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/iOS/"/>
+    
+    
+      <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
+    
+      <category term="Cocoapods" scheme="http://tangjz.cc/tags/Cocoapods/"/>
+    
+      <category term="iTerms" scheme="http://tangjz.cc/tags/iTerms/"/>
+    
+      <category term="Carthage" scheme="http://tangjz.cc/tags/Carthage/"/>
+    
+  </entry>
   
   <entry>
     <title>Golang 笔记</title>
@@ -46,9 +76,9 @@
     <link href="http://tangjz.cc/2018/04/18/%E6%88%91%E5%B8%B8%E7%94%A8%E7%9A%84-Mac-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%92%8C%E5%BA%94%E7%94%A8/"/>
     <id>http://tangjz.cc/2018/04/18/我常用的-Mac-开发工具和应用/</id>
     <published>2018-04-18T11:08:39.000Z</published>
-    <updated>2018-05-23T06:17:18.367Z</updated>
+    <updated>2018-11-01T08:51:18.033Z</updated>
     
-    <content type="html"><![CDATA[<p>记录一下个人使用 Mac OS 系统过程中常用的工具和应用<br><a id="more"></a></p><h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><p><strong>Chrome</strong>：开发必备了吧，配合各种插件</p><p><strong>Navicat Premium</strong>：支持多种数据库，开发必备</p><p><strong>Paw</strong>：API调试工具</p><p><strong>PostMan</strong>：API调试工具</p><p><strong>Dash</strong>：各种开发文档合集</p><p><strong>PaintCode</strong>：支持通过 svg 生成 iOS 和 Android 代码</p><p><strong>Sublime Text</strong>：支持多种编程语言的编译器</p><p><strong>Sourcetree</strong>：Git 可视化应用</p><p><strong>CornerStone</strong>：SVN 可视化应用</p><p><strong>HBuilder</strong>：前端IDE，支持本地部署</p><p><strong>WebStorm</strong>：前端IDE</p><p><strong>Anaconda</strong>：快速集成 Python 环境，包含了conda、Python等180多个科学包及其依赖项</p><p><strong>Hopper Disassembler v4</strong>：iOS 逆向工具</p><p><strong>GoLang</strong>：Go语言IDE</p><h1 id="设计-amp-修图"><a href="#设计-amp-修图" class="headerlink" title="设计&amp;修图"></a>设计&amp;修图</h1><p><strong>Adobe LightRoom</strong>：批量修图</p><p><strong>Sketch</strong>：原型设计神器</p><p><strong>Adobe Photoshop</strong>：业余修图使用</p><h1 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h1><p><strong>Alfred</strong>：是一个让你可以丢掉鼠标的神器</p><p><strong>Surge</strong>：网络代理工具</p><p><strong>LightPaper</strong>：免费的Markdown 编译器，十分<br>好用</p><p><strong>Charles</strong>：抓包神器，支持HTTP/HTTPS</p><p><strong>MindNode</strong>：脑图应用，iOS 和 Mac 都有，支持 iCloud 同步</p><p><strong>iTerm + zsh</strong>：iTerm 可以说是Mac 上最好用的终端应用，配合上 zsh ，大大地提高了我的工作效率</p><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><p><strong>iZip</strong>：解压缩文件</p><p><strong>Movist</strong>：支持多种视频格式播放</p><p><strong>IINA</strong>：开源的视频播放器</p><p><strong>PifGIF</strong>：视频转GIF</p><p><strong>ForkLift</strong>：FTP等远程连接工具</p><p><strong>CleanMyMac</strong>：傻瓜式清理Mac垃圾</p><p><strong>TeamViewer</strong>：快速远程连接应用</p><p><strong>coconutBattery</strong>：免费查看iPhone 和 Mac 的电池损耗</p><p><strong>iMazing</strong>：可下载已下架的应用等</p>]]></content>
+    <content type="html"><![CDATA[<p>记录一下个人使用 Mac OS 系统过程中常用的工具和应用<br><a id="more"></a></p><h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><p><strong>Chrome</strong>：开发必备了吧，配合各种插件</p><p><strong>Navicat Premium</strong>：支持多种数据库，开发必备</p><p><strong>Paw</strong>：API调试工具</p><p><strong>PostMan</strong>：API调试工具</p><p><strong>Dash</strong>：各种开发文档合集</p><p><strong>PaintCode</strong>：支持通过 svg 生成 iOS 和 Android 代码</p><p><strong>Sublime Text</strong>：支持多种编程语言的编译器</p><p><strong>Sourcetree</strong>：Git 可视化应用</p><p><strong>CornerStone</strong>：SVN 可视化应用</p><p><strong>HBuilder</strong>：前端IDE，支持本地部署</p><p><strong>WebStorm</strong>：前端IDE</p><p><strong>Anaconda</strong>：快速集成 Python 环境，包含了conda、Python等180多个科学包及其依赖项</p><p><strong>Hopper Disassembler v4</strong>：iOS 逆向工具</p><p><strong>GoLang</strong>：Go语言IDE</p><h1 id="设计-amp-修图"><a href="#设计-amp-修图" class="headerlink" title="设计&amp;修图"></a>设计&amp;修图</h1><p><strong>Adobe LightRoom</strong>：批量修图</p><p><strong>Sketch</strong>：原型设计神器</p><p><strong>Adobe Photoshop</strong>：业余修图使用</p><h1 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h1><p><strong>Alfred</strong>：是一个让你可以丢掉鼠标的神器</p><p><strong>Surge</strong>：网络代理工具</p><p><strong>LightPaper</strong>：免费的Markdown 编译器，十分<br>好用</p><p><strong>Charles</strong>：抓包神器，支持HTTP/HTTPS</p><p><strong>MindNode</strong>：脑图应用，iOS 和 Mac 都有，支持 iCloud 同步</p><p><strong>iTerm + zsh</strong>：iTerm 可以说是Mac 上最好用的终端应用，配合上 zsh ，大大地提高了我的工作效率</p><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><p><strong>iZip</strong>：解压缩文件</p><p><strong>Movist</strong>：支持多种视频格式播放</p><p><strong>IINA</strong>：开源的视频播放器</p><p><strong>PifGIF</strong>：视频转GIF</p><p><strong>ForkLift</strong>：FTP等远程连接工具</p><p><strong>CleanMyMac</strong>：傻瓜式清理Mac垃圾</p><p><strong>TeamViewer</strong>：快速远程连接应用</p><p><strong>coconutBattery</strong>：免费查看iPhone 和 Mac 的电池损耗</p><p><strong>iMazing</strong>：可下载已下架的应用等</p><p><strong>Soda Player</strong>: 直接播放种子、磁力链接、在线视频、AceStream 链接和本地视频文件的视频播放器</p><p><strong>BND2</strong>：百度网盘不限速下载器</p><p><strong>Reader3</strong>：rss阅读器</p>]]></content>
     
     <summary type="html">
     
@@ -90,9 +120,9 @@
       <category term="iOS" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/iOS/"/>
     
     
-      <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
-    
       <category term="CocoaPods" scheme="http://tangjz.cc/tags/CocoaPods/"/>
+    
+      <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
     
   </entry>
   
@@ -276,9 +306,9 @@
       <category term="iOS" scheme="http://tangjz.cc/categories/%E5%BC%80%E5%8F%91/iOS/"/>
     
     
-      <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
-    
       <category term="CocoaPods" scheme="http://tangjz.cc/tags/CocoaPods/"/>
+    
+      <category term="iOS" scheme="http://tangjz.cc/tags/iOS/"/>
     
   </entry>
   
