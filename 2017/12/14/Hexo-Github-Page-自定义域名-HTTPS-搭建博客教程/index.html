@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Tangjz&#39;s Blog">
 <meta property="og:description" content="折腾了2天，终于把博客搭起来了。再见简书 :)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-22T03:06:14.390Z">
+<meta property="og:updated_time" content="2018-11-22T03:12:45.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github Page+自定义域名+HTTPS-搭建博客教程">
 <meta name="twitter:description" content="折腾了2天，终于把博客搭起来了。再见简书 :)">
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-22T11:06:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-22T11:12:45+08:00">
                 2018-11-22
               </time>
             
@@ -468,36 +468,8 @@
 <li><p><strong>设置自己的域名。</strong> 在 <code>GitHub Pages - Custom domain</code> 中设置自己的域名，我这里设置成 <code>tangjz.cc</code></p>
 </li>
 <li><p>在你自己的域名管理中设置 DNS 解析，我的 cc 域名使用的是阿里云，在域名管理里面设置如下的域名解析规则：</p>
+<p> | 记录类型 | 主机记录 | 解析线路（isp） |  记录值 | TTL |<br> | ——–   | :—–:   | :—–:  | :—-: | :—-: |<br> | CNAME | www |   默认    | janztam.github.io | 1天 |<br> | CNAME | @     |   默认    | janztam.github.io | 1天 |</p>
 </li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>记录类型</th>
-<th style="text-align:center">主机记录</th>
-<th style="text-align:center">解析线路（isp）</th>
-<th style="text-align:center">记录值</th>
-<th style="text-align:center">TTL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CNAME</td>
-<td style="text-align:center">www</td>
-<td style="text-align:center">默认</td>
-<td style="text-align:center">janztam.github.io</td>
-<td style="text-align:center">1天</td>
-</tr>
-<tr>
-<td>CNAME</td>
-<td style="text-align:center">@</td>
-<td style="text-align:center">默认</td>
-<td style="text-align:center">janztam.github.io</td>
-<td style="text-align:center">1天</td>
-</tr>
-</tbody>
-</table>
-<ol>
 <li><p>刷新一下 GitHub Page 的设置页。现在你可以访问<code>http://tangjz.cc</code>了。</p>
 </li>
 <li><p>稍等片刻，大概10分钟左右，再次刷新一下 GitHub Page 的设置页。在<code>GitHub Pages-Enforce HTTPS</code>里打上勾。叮～添加小绿锁完成～</p>
