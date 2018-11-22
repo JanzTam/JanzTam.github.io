@@ -90,7 +90,7 @@
 <meta property="og:description" content="此文章希望能帮助到未使用过CocoaPods的iOS开发者。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/185624-38e1dda736c13889.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-14T06:49:18.943Z">
+<meta property="og:updated_time" content="2018-11-22T01:35:52.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocoaPods快速配置并上手">
 <meta name="twitter:description" content="此文章希望能帮助到未使用过CocoaPods的iOS开发者。">
@@ -302,7 +302,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-22T09:35:52+08:00">
+                2018-11-22
+              </time>
             
           </span>
 
@@ -396,8 +408,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -v</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem -v</span><br></pre></td></tr></table></figure>
 <p>以下重要一步！</p>
-<p>ruby 的软件源 因为使用的是亚马逊的云服务，所以被墙了，需要更新一下 ruby 的源，使用如下代码将官方的 ruby 源替换成  <a href="https://gems.ruby-china.org/" target="_blank" rel="noopener">https://gems.ruby-china.org/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里是3句命令，请按顺序执行</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources -a https://gems.ruby-china.org/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
+<p>ruby 的软件源 因为使用的是亚马逊的云服务，所以被墙了，需要更新一下 ruby 的源，使用如下代码将官方的 ruby 源替换成  <a href="https://gems.ruby-china.com/" target="_blank" rel="noopener">https://gems.ruby-china.com/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里是3句命令，请按顺序执行</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources -a https://gems.ruby-china.com/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
 <p><strong>3、通过gem安装CocoaPods</strong><br>在安装之前,还需要将<strong>Xcode</strong>里的<strong>Command line</strong>工具安装好。</p>
 <p>gem安装CocoaPods的原来命令：<br><del>sudo gem install cocoapods</del></p>
 <p>在OS 10.11下使用原来的命令你会发现并不能如愿安装成功。应该改用如下命令：</p>
