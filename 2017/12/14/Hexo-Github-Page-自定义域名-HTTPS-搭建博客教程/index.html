@@ -89,12 +89,10 @@
 <meta property="og:site_name" content="Tangjz&#39;s Blog">
 <meta property="og:description" content="折腾了2天，终于把博客搭起来了。再见简书 :)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/185624-942b7e17a4412aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-22T01:46:45.195Z">
+<meta property="og:updated_time" content="2018-11-22T03:06:14.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github Page+自定义域名+HTTPS-搭建博客教程">
 <meta name="twitter:description" content="折腾了2天，终于把博客搭起来了。再见简书 :)">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/185624-942b7e17a4412aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -312,7 +310,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-22T09:46:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-22T11:06:14+08:00">
                 2018-11-22
               </time>
             
@@ -465,24 +463,44 @@
 </ul>
 <h1 id="二、域名绑定-HTTPS"><a href="#二、域名绑定-HTTPS" class="headerlink" title="二、域名绑定+HTTPS"></a>二、域名绑定+HTTPS</h1><p>为什么要上HTTPS？主要是防止流量劫持，和提升逼格吧。哈哈哈哈哈哈。</p>
 <p>先购买域名。我是在阿里云域名上购买的 cc 域名，主要是便宜，5 年才 96 RMB！</p>
-<h3 id="利用-Netlify-提供的服务"><a href="#利用-Netlify-提供的服务" class="headerlink" title="利用 Netlify 提供的服务"></a>利用 Netlify 提供的服务</h3><p><a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a> 提供免费的服务来让我们的域名支持 HTTPS，它里面的证书是 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 来提供的。</p>
+<p><strong>2018年开始，GitHub Page 已经提供 HTTPS 了。</strong></p>
 <ol>
-<li><p>注册一个 Netlify 帐号，选择用 GitHub 注册就好了。 </p>
+<li><p><strong>设置自己的域名。</strong> 在 <code>GitHub Pages - Custom domain</code> 中设置自己的域名，我这里设置成 <code>tangjz.cc</code></p>
 </li>
-<li><p>添加一个新的站点。点击 New Site from Git </p>
+<li><p>在你自己的域名管理中设置 DNS 解析，我的 cc 域名使用的是阿里云，在域名管理里面设置如下的域名解析规则：</p>
 </li>
-<li><p>配置站点，简单来说就是添加你的博客仓库地址(XXX.github.io)，然后把博客的构建放在 Netlify 上，按照步骤来即可。</p>
+</ol>
+<table>
+<thead>
+<tr>
+<th>记录类型</th>
+<th style="text-align:center">主机记录</th>
+<th style="text-align:center">解析线路（isp）</th>
+<th style="text-align:center">记录值</th>
+<th style="text-align:center">TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td style="text-align:center">www</td>
+<td style="text-align:center">默认</td>
+<td style="text-align:center">janztam.github.io</td>
+<td style="text-align:center">1天</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td style="text-align:center">@</td>
+<td style="text-align:center">默认</td>
+<td style="text-align:center">janztam.github.io</td>
+<td style="text-align:center">1天</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p>刷新一下 GitHub Page 的设置页。现在你可以访问<code>http://tangjz.cc</code>了。</p>
 </li>
-<li><p>在 Settings -&gt; General -&gt; Site information 中可以点击 Change site name，修改成一个简短点的名字，我这里取名叫 janztam，然后就可以通过 <a href="https://janztam.netlify.com/" target="_blank" rel="noopener">https://janztam.netlify.com/</a> 来访问博客了。</p>
-</li>
-<li><p>设置自己的域名 在 Domain management 中设置自己的域名，我这里设置成 tangjz.cc</p>
-</li>
-<li><p>在你自己的域名管理中设置 DNS 解析，我的 cc 域名使用的是阿里云，在域名管理里面设置如下的域名解析规则：<br><img src="http://upload-images.jianshu.io/upload_images/185624-942b7e17a4412aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-</li>
-<li><p>打开你 Hexo 博客的文件夹，在 source 文件夹里面创建一个 CNAME 纯文本文件，对，没有扩展名！在里面加入你自己的 netlify，这样可以避免每次推送文章的时候都改掉了GitHub 仓库的绑定域名 ：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">janztam.netlify.com</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>回到 Netlify ，还是在 Domain management 中，找到 HTTPS，设置 SSL/TLS certificate 即可，稍等片刻之后，你就发现你的站点加上了绿色小锁了。</p>
+<li><p>稍等片刻，大概10分钟左右，再次刷新一下 GitHub Page 的设置页。在<code>GitHub Pages-Enforce HTTPS</code>里打上勾。叮～添加小绿锁完成～</p>
 </li>
 </ol>
 
@@ -708,7 +726,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Hexo-搭建博客"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;Hexo-&#x642D;&#x5EFA;&#x535A;&#x5BA2;" class="headerlink" title="&#x4E00;&#x3001;Hexo &#x642D;&#x5EFA;&#x535A;&#x5BA2;"></a>&#x4E00;&#x3001;Hexo &#x642D;&#x5EFA;&#x535A;&#x5BA2;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.0.1.</span> <span class="nav-text"><a href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"></a>&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地搭建-hexo-静态博客"><span class="nav-number">1.0.2.</span> <span class="nav-text"><a href="#&#x672C;&#x5730;&#x642D;&#x5EFA;-hexo-&#x9759;&#x6001;&#x535A;&#x5BA2;" class="headerlink" title="&#x672C;&#x5730;&#x642D;&#x5EFA; hexo &#x9759;&#x6001;&#x535A;&#x5BA2;"></a>&#x672C;&#x5730;&#x642D;&#x5EFA; hexo &#x9759;&#x6001;&#x535A;&#x5BA2;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将博客与Github关联"><span class="nav-number">1.0.3.</span> <span class="nav-text"><a href="#&#x5C06;&#x535A;&#x5BA2;&#x4E0E;Github&#x5173;&#x8054;" class="headerlink" title="&#x5C06;&#x535A;&#x5BA2;&#x4E0E;Github&#x5173;&#x8054;"></a>&#x5C06;&#x535A;&#x5BA2;&#x4E0E;Github&#x5173;&#x8054;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新文章"><span class="nav-number">1.0.4.</span> <span class="nav-text"><a href="#&#x66F4;&#x65B0;&#x6587;&#x7AE0;" class="headerlink" title="&#x66F4;&#x65B0;&#x6587;&#x7AE0;"></a>&#x66F4;&#x65B0;&#x6587;&#x7AE0;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文章标签设置"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text"><a href="#&#x6587;&#x7AE0;&#x6807;&#x7B7E;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x6587;&#x7AE0;&#x6807;&#x7B7E;&#x8BBE;&#x7F6E;"></a>&#x6587;&#x7AE0;&#x6807;&#x7B7E;&#x8BBE;&#x7F6E;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文章分类设置"><span class="nav-number">1.0.4.0.2.</span> <span class="nav-text"><a href="#&#x6587;&#x7AE0;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x6587;&#x7AE0;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;"></a>&#x6587;&#x7AE0;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置首页文章不显示全文"><span class="nav-number">1.0.4.0.3.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;&#x9996;&#x9875;&#x6587;&#x7AE0;&#x4E0D;&#x663E;&#x793A;&#x5168;&#x6587;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x9996;&#x9875;&#x6587;&#x7AE0;&#x4E0D;&#x663E;&#x793A;&#x5168;&#x6587;"></a>&#x8BBE;&#x7F6E;&#x9996;&#x9875;&#x6587;&#x7AE0;&#x4E0D;&#x663E;&#x793A;&#x5168;&#x6587;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加文章更新时间"><span class="nav-number">1.0.4.0.4.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x65F6;&#x95F4;" class="headerlink" title="&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x65F6;&#x95F4;"></a>&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x65F6;&#x95F4;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-RSS"><span class="nav-number">1.0.5.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;-RSS" class="headerlink" title="&#x8BBE;&#x7F6E; RSS"></a>&#x8BBE;&#x7F6E; RSS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、域名绑定-HTTPS"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x57DF;&#x540D;&#x7ED1;&#x5B9A;-HTTPS" class="headerlink" title="&#x4E8C;&#x3001;&#x57DF;&#x540D;&#x7ED1;&#x5B9A;+HTTPS"></a>&#x4E8C;&#x3001;&#x57DF;&#x540D;&#x7ED1;&#x5B9A;+HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-Netlify-提供的服务"><span class="nav-number">2.0.1.</span> <span class="nav-text"><a href="#&#x5229;&#x7528;-Netlify-&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;" class="headerlink" title="&#x5229;&#x7528; Netlify &#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;"></a>&#x5229;&#x7528; Netlify &#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Hexo-搭建博客"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;Hexo-&#x642D;&#x5EFA;&#x535A;&#x5BA2;" class="headerlink" title="&#x4E00;&#x3001;Hexo &#x642D;&#x5EFA;&#x535A;&#x5BA2;"></a>&#x4E00;&#x3001;Hexo &#x642D;&#x5EFA;&#x535A;&#x5BA2;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.0.1.</span> <span class="nav-text"><a href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"></a>&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地搭建-hexo-静态博客"><span class="nav-number">1.0.2.</span> <span class="nav-text"><a href="#&#x672C;&#x5730;&#x642D;&#x5EFA;-hexo-&#x9759;&#x6001;&#x535A;&#x5BA2;" class="headerlink" title="&#x672C;&#x5730;&#x642D;&#x5EFA; hexo &#x9759;&#x6001;&#x535A;&#x5BA2;"></a>&#x672C;&#x5730;&#x642D;&#x5EFA; hexo &#x9759;&#x6001;&#x535A;&#x5BA2;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将博客与Github关联"><span class="nav-number">1.0.3.</span> <span class="nav-text"><a href="#&#x5C06;&#x535A;&#x5BA2;&#x4E0E;Github&#x5173;&#x8054;" class="headerlink" title="&#x5C06;&#x535A;&#x5BA2;&#x4E0E;Github&#x5173;&#x8054;"></a>&#x5C06;&#x535A;&#x5BA2;&#x4E0E;Github&#x5173;&#x8054;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新文章"><span class="nav-number">1.0.4.</span> <span class="nav-text"><a href="#&#x66F4;&#x65B0;&#x6587;&#x7AE0;" class="headerlink" title="&#x66F4;&#x65B0;&#x6587;&#x7AE0;"></a>&#x66F4;&#x65B0;&#x6587;&#x7AE0;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文章标签设置"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text"><a href="#&#x6587;&#x7AE0;&#x6807;&#x7B7E;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x6587;&#x7AE0;&#x6807;&#x7B7E;&#x8BBE;&#x7F6E;"></a>&#x6587;&#x7AE0;&#x6807;&#x7B7E;&#x8BBE;&#x7F6E;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文章分类设置"><span class="nav-number">1.0.4.0.2.</span> <span class="nav-text"><a href="#&#x6587;&#x7AE0;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x6587;&#x7AE0;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;"></a>&#x6587;&#x7AE0;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置首页文章不显示全文"><span class="nav-number">1.0.4.0.3.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;&#x9996;&#x9875;&#x6587;&#x7AE0;&#x4E0D;&#x663E;&#x793A;&#x5168;&#x6587;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x9996;&#x9875;&#x6587;&#x7AE0;&#x4E0D;&#x663E;&#x793A;&#x5168;&#x6587;"></a>&#x8BBE;&#x7F6E;&#x9996;&#x9875;&#x6587;&#x7AE0;&#x4E0D;&#x663E;&#x793A;&#x5168;&#x6587;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加文章更新时间"><span class="nav-number">1.0.4.0.4.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x65F6;&#x95F4;" class="headerlink" title="&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x65F6;&#x95F4;"></a>&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x65F6;&#x95F4;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-RSS"><span class="nav-number">1.0.5.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;-RSS" class="headerlink" title="&#x8BBE;&#x7F6E; RSS"></a>&#x8BBE;&#x7F6E; RSS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、域名绑定-HTTPS"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x57DF;&#x540D;&#x7ED1;&#x5B9A;-HTTPS" class="headerlink" title="&#x4E8C;&#x3001;&#x57DF;&#x540D;&#x7ED1;&#x5B9A;+HTTPS"></a>&#x4E8C;&#x3001;&#x57DF;&#x540D;&#x7ED1;&#x5B9A;+HTTPS</span></a></li></ol></div>
             
 
           </div>
