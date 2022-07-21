@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="组装主机,DIY,Hackintosh主机,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tangjz's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="记自己动手更换了 MBP 电池、MBP无线模块、iPhone 电池之后，又来挑战 DIY 主机。">
+<meta name="keywords" content="组装主机,DIY,Hackintosh主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次电脑主机组装">
+<meta property="og:url" content="http://tangjz.cc/2019/12/15/记一次电脑主机组装/index.html">
+<meta property="og:site_name" content="Tangjz&#39;s Blog">
+<meta property="og:description" content="记自己动手更换了 MBP 电池、MBP无线模块、iPhone 电池之后，又来挑战 DIY 主机。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-16T02:45:09.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次电脑主机组装">
+<meta name="twitter:description" content="记自己动手更换了 MBP 电池、MBP无线模块、iPhone 电池之后，又来挑战 DIY 主机。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tangjz.cc/2019/12/15/记一次电脑主机组装/">
+
+
+
+
+
+  <title>记一次电脑主机组装 | Tangjz's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tangjz's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2019/12/15/记一次电脑主机组装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="唐健焯">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记一次电脑主机组装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-15T22:43:53+08:00">
+                2019-12-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-16T10:45:09+08:00">
+                2019-12-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生活/DIY/" itemprop="url" rel="index">
+                    <span itemprop="name">DIY</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/15/记一次电脑主机组装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/15/记一次电脑主机组装/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览次数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记自己动手更换了 MBP 电池、MBP无线模块、iPhone 电池之后，又来挑战 DIY 主机。</p>
+<a id="more"></a>
+<h1 id="确定自己的场景需求"><a href="#确定自己的场景需求" class="headerlink" title="确定自己的场景需求"></a>确定自己的场景需求</h1><p>首先，配置主机之前必须得清楚自己的需求，不然到时候发现不合适，退换货就麻烦了。办公、设计、视频编辑、黑苹果、写代码等，不同的使用场景，配置也相应的不一样。</p>
+<p><strong>按价格排序</strong></p>
+<p>办公 &lt; 设计 &lt; 写代码 &lt; 游戏 &lt; 视频编辑</p>
+<p>设计的价格主要体现在显示器上。视频编辑则对 CPU 单核处理性能和显卡的要求更高。因此，得十分明确自己的需求。当然，不差钱的话，可以直接一切往高端走，不需犹豫挑这挑那的。</p>
+<h1 id="基本硬件要求"><a href="#基本硬件要求" class="headerlink" title="基本硬件要求"></a>基本硬件要求</h1><p>除了基本的输出设备（键盘、鼠标、显示器、音箱）之外，以下仅针对主机。</p>
+<ul>
+<li>CPU</li>
+<li>主板</li>
+<li>内存条</li>
+<li>硬盘</li>
+<li>电源</li>
+<li>CPU 散热器 </li>
+<li>显卡（可选）</li>
+<li>机箱</li>
+</ul>
+<p>显卡为啥说可选，如果您只是办公使用，一个带显的 CPU  完全能满足需求，没必要再上显卡。</p>
+<h1 id="硬件说明"><a href="#硬件说明" class="headerlink" title="硬件说明"></a>硬件说明</h1><p>选择时，建议按此处顺序配置自己所需的硬件。</p>
+<h3 id="1、CPU"><a href="#1、CPU" class="headerlink" title="1、CPU"></a>1、CPU</h3><p>目前熟知的，主要是 Inter 英特尔 和 AMD。</p>
+<p>选超频，不解释。</p>
+<p>游戏、黑苹果，推荐上英特尔。i7 9700、i9 9900，可看自己的钱包选择。</p>
+<p>其余的话可选择 AMD。</p>
+<h3 id="2、CPU-散热器"><a href="#2、CPU-散热器" class="headerlink" title="2、CPU 散热器"></a>2、CPU 散热器</h3><p>散热器又分水冷和风冷。</p>
+<p>水冷的优点：散热效果好、占用机箱体积小、装逼效果 Max。缺点：价格贵</p>
+<p>风冷的优点：散热效果其实和水冷差不多，同样的价格更建议上水冷，比水冷要便宜得多。缺点：占用机箱体积。</p>
+<p>不缺钱真的建议上个水冷，我因穷，上了个6热管的大霜塔，挡住了好几个内存条的卡槽，可烦人了。</p>
+<h3 id="3、内存条"><a href="#3、内存条" class="headerlink" title="3、内存条"></a>3、内存条</h3><p>除了办公之外，基本都得上16G+了。目前主要还是DDR4，DDR5估计得到2020年之后才能普及。</p>
+<p>频率建议在自己的接受价格范围内越高越好。至于品牌，个人感觉差异不大。</p>
+<p>上套条上套条上套条！重要的话说三遍！即相同牌子、频率、大小。</p>
+<h3 id="4、硬盘"><a href="#4、硬盘" class="headerlink" title="4、硬盘"></a>4、硬盘</h3><p>一般来说，建议 1 个 200 G 的 SSD + 1 个大容量的机械硬盘。要是黑苹果的话，建议 2 个 SSD + 1 个机械硬盘，1个 SSD 装 Window 系统、另一个装 Mac 系统。</p>
+<p>SSD 建议选 M.2 口的。</p>
+<p>黑苹果建议上 Inter 760P系列的。</p>
+<p>机械硬盘选 7200 转的。希捷、西数都可以。</p>
+<h3 id="5、显卡"><a href="#5、显卡" class="headerlink" title="5、显卡"></a>5、显卡</h3><p>要是只需核显的话，可跳过。</p>
+<p>黑苹果必须得上 A 卡，A 卡中又以蓝宝石为王。建议RX590</p>
+<p>其它，看自己钱包选择。</p>
+<h3 id="6、主板"><a href="#6、主板" class="headerlink" title="6、主板"></a>6、主板</h3><p>主板之中，主要以技嘉、微星、华硕为主。这之中挑自己喜欢的就好。</p>
+<p>看回上面的1～5，必须得注意想要买的主板：</p>
+<ul>
+<li>是否支持超频？</li>
+<li>带多少个内存条卡槽？</li>
+<li>带多少个SSD M.2卡槽？（建议2个及以上）</li>
+<li>最高支持内存条的频率是多少？</li>
+<li>PCI-E接口多少？（显卡和无线网卡的卡槽，建议2个以上）</li>
+<li>是否带外显 Type-C 接口？（只需核显的话，只有 Type-C 才支持 4K 60hz，HDMI只支持 4K 30hz）</li>
+</ul>
+<h3 id="7、-电源"><a href="#7、-电源" class="headerlink" title="7、 电源"></a>7、 电源</h3><p>一般建议600W以上。高端的 CPU 和显卡，则建议 750W 以上。具体看硬件，尽量买高点w数的。</p>
+<p>牌子建议选择先马。</p>
+<p>现在高端主板 CPU 都是 8 + 4 pin的，显卡8+6、8+8等等都有，要看清自己需要的再买。</p>
+<h3 id="8、机箱"><a href="#8、机箱" class="headerlink" title="8、机箱"></a>8、机箱</h3><p>选择的时候注意自己的主板是 ITX 的还是啥的！谨记啊老铁们！</p>
+<p>其它注意事项：</p>
+<ul>
+<li>显卡长度限制</li>
+<li>散热器高度限制</li>
+<li>是否有水冷风扇位</li>
+<li>建议前置带 Type-C 接口</li>
+</ul>
+<h1 id="最终选择"><a href="#最终选择" class="headerlink" title="最终选择"></a>最终选择</h1><p>我主要需求是黑苹果，分享下我的配置：</p>
+<ul>
+<li>CPU：i7 9700K</li>
+<li>CPU 散热：风冷，大霜塔</li>
+<li>内存条：芝奇 DDR4 3600 8G * 2</li>
+<li>硬盘：东芝 SSD M.2 500G *2、希捷 2T 高速</li>
+<li>显卡：蓝宝石 RX 590 8G</li>
+<li>主板：技嘉 Z390 Aorus Pro WiFi</li>
+<li>电源：先马 750W</li>
+<li>机箱：先马鲁班1</li>
+</ul>
+<h1 id="动手组装"><a href="#动手组装" class="headerlink" title="动手组装"></a>动手组装</h1><p>组装之前，建议测试过点亮了之后再装上机箱！！！</p>
+<p><em>安装前注意事项！！！</em></p>
+<ul>
+<li><p>新手安装每一样硬件，记得认真看说明书！</p>
+</li>
+<li><p>看准机箱螺丝类型，按类安装。</p>
+</li>
+<li><p>固定主板螺丝千万要温柔，不能紧。血的教训。呜呜呜</p>
+</li>
+<li><p>要涂膏的都先别涂，确定能点亮了再涂。避免影响退换货。</p>
+</li>
+<li><p>风扇通道。前进风，顶部、后面出风</p>
+</li>
+<li><p>电源线都有卡位，不能强拔，以免弄坏主板</p>
+</li>
+<li><p>插入多个 M.2，有些 SATA 接口会被占用，插入机械硬盘的时候稍微注意下</p>
+</li>
+</ul>
+<p>按顺序装上</p>
+<ol>
+<li>CPU（先别涂散热膏，以免出现问题，影响退货）</li>
+<li>内存条</li>
+<li>散热器（同样，先别涂散热膏，以免出现问题，影响退货）</li>
+<li>显卡（有核显可先不装）</li>
+<li>硬盘</li>
+<li>电源</li>
+</ol>
+<p>使用螺丝刀连接跳线来点亮（开机）。</p>
+<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>基本流程就这样。Enjoy～</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/组装主机/" rel="tag"># 组装主机</a>
+          
+            <a href="/tags/DIY/" rel="tag"># DIY</a>
+          
+            <a href="/tags/Hackintosh主机/" rel="tag"># Hackintosh主机</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/01/Failed-to-connect-to-GitHub-to-update/" rel="next" title="Failed to connect to GitHub to update...">
+                <i class="fa fa-chevron-left"></i> Failed to connect to GitHub to update...
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/headImg.jpg" alt="唐健焯">
+            
+              <p class="site-author-name" itemprop="name">唐健焯</p>
+              <p class="site-description motion-element" itemprop="description">不会摄影的设计师不是个好码农！(´･_･`)</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/JanzTam" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/JanzTam" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/61073715" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#确定自己的场景需求"><span class="nav-number">1.</span> <span class="nav-text">确定自己的场景需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本硬件要求"><span class="nav-number">2.</span> <span class="nav-text">基本硬件要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#硬件说明"><span class="nav-number">3.</span> <span class="nav-text">硬件说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、CPU"><span class="nav-number">3.0.1.</span> <span class="nav-text">1、CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、CPU-散热器"><span class="nav-number">3.0.2.</span> <span class="nav-text">2、CPU 散热器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、内存条"><span class="nav-number">3.0.3.</span> <span class="nav-text">3、内存条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、硬盘"><span class="nav-number">3.0.4.</span> <span class="nav-text">4、硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、显卡"><span class="nav-number">3.0.5.</span> <span class="nav-text">5、显卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、主板"><span class="nav-number">3.0.6.</span> <span class="nav-text">6、主板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、-电源"><span class="nav-number">3.0.7.</span> <span class="nav-text">7、 电源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、机箱"><span class="nav-number">3.0.8.</span> <span class="nav-text">8、机箱</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#最终选择"><span class="nav-number">4.</span> <span class="nav-text">最终选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动手组装"><span class="nav-number">5.</span> <span class="nav-text">动手组装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End"><span class="nav-number">6.</span> <span class="nav-text">End</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">唐健焯</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://janztam.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tangjz.cc/2019/12/15/记一次电脑主机组装/';
+          this.page.identifier = '2019/12/15/记一次电脑主机组装/';
+          this.page.title = '记一次电脑主机组装';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://janztam.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

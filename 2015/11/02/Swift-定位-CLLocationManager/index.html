@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,MapView,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tangjz's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="此文章主要介绍如何在Swift下使用CLLocationManager来获取定位的经纬度，并根据经纬度进行你地理编码来获取定位点的信息。">
+<meta name="keywords" content="Swift,MapView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Swift]定位-CLLocationManager">
+<meta property="og:url" content="http://tangjz.cc/2015/11/02/Swift-定位-CLLocationManager/index.html">
+<meta property="og:site_name" content="Tangjz&#39;s Blog">
+<meta property="og:description" content="此文章主要介绍如何在Swift下使用CLLocationManager来获取定位的经纬度，并根据经纬度进行你地理编码来获取定位点的信息。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/185624-bd16962bf53e1909.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/185624-880e06e6aad448c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-14T06:49:17.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Swift]定位-CLLocationManager">
+<meta name="twitter:description" content="此文章主要介绍如何在Swift下使用CLLocationManager来获取定位的经纬度，并根据经纬度进行你地理编码来获取定位点的信息。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/185624-bd16962bf53e1909.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tangjz.cc/2015/11/02/Swift-定位-CLLocationManager/">
+
+
+
+
+
+  <title>[Swift]定位-CLLocationManager | Tangjz's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tangjz's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tangjz.cc/2015/11/02/Swift-定位-CLLocationManager/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="唐健焯">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/headImg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tangjz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Swift]定位-CLLocationManager</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-02T13:53:51+08:00">
+                2015-11-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-14T14:49:17+08:00">
+                2017-12-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/02/Swift-定位-CLLocationManager/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/Swift-定位-CLLocationManager/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览次数：
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此文章主要介绍如何在Swift下使用CLLocationManager来获取定位的经纬度，并根据经纬度进行你地理编码来获取定位点的信息。<br><a id="more"></a></p>
+<p>先导入<strong>MapKit</strong>头文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import MapKit</span><br></pre></td></tr></table></figure>
+<p>为了让代码更容易理解，我预先在StoryBoard创建好了初始界面，并简单的做了下屏幕适配。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-bd16962bf53e1909.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>在iOS8以上，苹果官方规定，使用定位前都必须要先经过用户同意。<br>先在Info.plist里添加2个Key，<strong>NSLocationWhenInUseUsageDescription</strong>和<strong>NSLocationAlwaysUsageDescription</strong>。之前我只添加了一个key，发现一直没有向用户发送允许请求定位的信息。把2个key都加进去就好了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/185624-880e06e6aad448c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请求允许定位key.png"></p>
+<h3 id="CLLocationManager"><a href="#CLLocationManager" class="headerlink" title="CLLocationManager"></a>CLLocationManager</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.locateManage.delegate = self</span><br><span class="line">        //请求定位权限</span><br><span class="line">if self.locateManage.respondsToSelector(Selector(&quot;requestAlwaysAuthorization&quot;)) &#123;</span><br><span class="line">       self.locateManage.requestAlwaysAuthorization()</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line">self.locateManage.desiredAccuracy = kCLLocationAccuracyBest//定位精准度</span><br><span class="line">self.locateManage.startUpdatingLocation()//开始定位</span><br></pre></td></tr></table></figure>
+<h3 id="MapView上显示定位点"><a href="#MapView上显示定位点" class="headerlink" title="MapView上显示定位点"></a>MapView上显示定位点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.mapViewLoca.showsUserLocation = true</span><br></pre></td></tr></table></figure>
+<p>为了节省用户电量，苹果建议我们，一般情况下，最好不要频繁地获取定位信息，这个教程里做了个示范，我在<strong>CLLocationManager</strong>定位代理方法里面只要获取到一次信息，就停止定位，并在定位的经纬度保存到属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var currentCoordinate:CLLocationCoordinate2D?</span><br></pre></td></tr></table></figure>
+<h3 id="CLLocationManager定位代理方法"><a href="#CLLocationManager定位代理方法" class="headerlink" title="CLLocationManager定位代理方法"></a>CLLocationManager定位代理方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) &#123;</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line">        if let newLoca = locations.last &#123;</span><br><span class="line">            CLGeocoder().reverseGeocodeLocation(newLoca, completionHandler: &#123; (pms, err) -&gt; Void in</span><br><span class="line">                if let newCoordinate = pms?.last?.location?.coordinate &#123;</span><br><span class="line">                    //此处设置地图中心点为定位点，缩放级别18</span><br><span class="line">                    self.mapViewLoca.setCenterCoordinateLevel(newCoordinate, zoomLevel: 15, animated: true)</span><br><span class="line">                    manager.stopUpdatingLocation()//停止定位，节省电量，只获取一次定位</span><br><span class="line">                    </span><br><span class="line">                    self.currentCoordinate = newCoordinate//记录定位点经纬度</span><br><span class="line">                    </span><br><span class="line">                    //取得最后一个地标，地标中存储了详细的地址信息，注意：一个地名可能搜索出多个地址</span><br><span class="line">                    let placemark:CLPlacemark = (pms?.last)!</span><br><span class="line">                    let location = placemark.location;//位置</span><br><span class="line">                    let region = placemark.region;//区域</span><br><span class="line">                    let addressDic = placemark.addressDictionary;//详细地址信息字典,包含以下部分信息</span><br><span class="line">//                    let name=placemark.name;//地名</span><br><span class="line">//                    let thoroughfare=placemark.thoroughfare;//街道</span><br><span class="line">//                    let subThoroughfare=placemark.subThoroughfare; //街道相关信息，例如门牌等</span><br><span class="line">//                    let locality=placemark.locality; // 城市</span><br><span class="line">//                    let subLocality=placemark.subLocality; // 城市相关信息，例如标志性建筑</span><br><span class="line">//                    let administrativeArea=placemark.administrativeArea; // 州</span><br><span class="line">//                    let subAdministrativeArea=placemark.subAdministrativeArea; //其他行政区域信息</span><br><span class="line">//                    let postalCode=placemark.postalCode; //邮编</span><br><span class="line">//                    let ISOcountryCode=placemark.ISOcountryCode; //国家编码</span><br><span class="line">//                    let country=placemark.country; //国家</span><br><span class="line">//                    let inlandWater=placemark.inlandWater; //水源、湖泊</span><br><span class="line">//                    let ocean=placemark.ocean; // 海洋</span><br><span class="line">//                    let areasOfInterest=placemark.areasOfInterest; //关联的或利益相关的地标</span><br><span class="line">                    print(location,region,addressDic)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="MKMapView缩放"><a href="#MKMapView缩放" class="headerlink" title="MKMapView缩放"></a>MKMapView缩放</h3><p>MKMapView提供的方法里并没有设置地图缩放级别的方法。这个教程里我给MKMapView添加了个extension</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func setCenterCoordinateLevel(centerCoordinate:CLLocationCoordinate2D,var zoomLevel:Double,animated:Bool)</span><br></pre></td></tr></table></figure>
+<p>具体实现方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">public func setCenterCoordinateLevel(centerCoordinate:CLLocationCoordinate2D,var zoomLevel:Double,animated:Bool) &#123;</span><br><span class="line">       //设置最小缩放级别</span><br><span class="line">       zoomLevel  = min(zoomLevel, 22)</span><br><span class="line">       </span><br><span class="line">       let span   = self.coordinateSpanWithMapView(self, centerCoordinate: centerCoordinate, zoomLevel: zoomLevel);</span><br><span class="line">       let region = MKCoordinateRegionMake(centerCoordinate, span);</span><br><span class="line">       </span><br><span class="line">       self.setRegion(region, animated: animated)</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func longitudeToPixelSpaceX(longitude:Double) -&gt;Double &#123;</span><br><span class="line">       return round(MERCATOR_OFFSET + MERCATOR_RADIUS * longitude * M_PI / 180.0)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func latitudeToPixelSpaceY(latitude:Double) -&gt;Double &#123;</span><br><span class="line">       return round(MERCATOR_OFFSET - MERCATOR_RADIUS * log((1 + sin(latitude * M_PI / 180.0)) / (1 - sin(latitude * M_PI / 180.0))) / 2.0)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func pixelSpaceXToLongitude(pixelX:Double) -&gt;Double &#123;</span><br><span class="line">       return ((round(pixelX) - MERCATOR_OFFSET) / MERCATOR_RADIUS) * 180.0 / M_PI</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func pixelSpaceYToLatitude(pixelY:Double) -&gt;Double &#123;</span><br><span class="line">       return (M_PI / 2.0 - 2.0 * atan(exp((round(pixelY) - MERCATOR_OFFSET) / MERCATOR_RADIUS))) * 180.0 / M_PI</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   func coordinateSpanWithMapView(mapView:MKMapView,</span><br><span class="line">                         centerCoordinate:CLLocationCoordinate2D,</span><br><span class="line">                                zoomLevel:Double) -&gt; MKCoordinateSpan</span><br><span class="line">   &#123;</span><br><span class="line">       let centerPixelX = self.longitudeToPixelSpaceX(centerCoordinate.longitude)</span><br><span class="line">       let centerPixelY = self.latitudeToPixelSpaceY(centerCoordinate.latitude)</span><br><span class="line">       let zoomExponent = 20.0 - zoomLevel</span><br><span class="line">       let zoomScale = pow(2.0, zoomExponent)</span><br><span class="line">       </span><br><span class="line">       let mapSizeInPixels = mapView.bounds.size</span><br><span class="line">       let scaledMapWidth  = Double(mapSizeInPixels.width) * zoomScale</span><br><span class="line">       let scaledMapHeight = Double(mapSizeInPixels.height) * zoomScale</span><br><span class="line">       </span><br><span class="line">       let topLeftPixelX = centerPixelX - (scaledMapWidth/2)</span><br><span class="line">       let topLeftPixelY = centerPixelY - (scaledMapHeight/2)</span><br><span class="line">       </span><br><span class="line">       let minLng = self.pixelSpaceXToLongitude(topLeftPixelX)</span><br><span class="line">       let maxLng = self.pixelSpaceXToLongitude(topLeftPixelX + scaledMapWidth)</span><br><span class="line">       let longitudeDelta = maxLng - minLng</span><br><span class="line">       </span><br><span class="line">       let minLat = self.pixelSpaceYToLatitude(topLeftPixelY);</span><br><span class="line">       let maxLat = self.pixelSpaceYToLatitude(topLeftPixelY + scaledMapHeight);</span><br><span class="line">       let latitudeDelta = -1 * (maxLat - minLat);</span><br><span class="line">       </span><br><span class="line">       let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)</span><br><span class="line">       return span</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>运行代码，如果出现报错，是因为项目里是纯Swift的话，需要将【Build settings-&gt;Embedded Content Contains Swift Code】的<code>no</code>改为<code>yes</code>.</p>
+<p>你可以在<a href="https://github.com/JanzTam/MKMapView_swift" target="_blank" rel="noopener">Github</a>找到此教程的代码。</p>
+<hr>
+<p>参考资料：<br><a href="http://troybrant.net/blog/2010/01/mkmapview-and-zoom-levels-a-visual-guide/" target="_blank" rel="noopener">MKMapView and Zoom Levels: A Visual Guide</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/MapView/" rel="tag"># MapView</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/25/CocoaPods快速配置并上手/" rel="next" title="CocoaPods快速配置并上手">
+                <i class="fa fa-chevron-left"></i> CocoaPods快速配置并上手
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/15/利用Multipeer-Connectivity框架进行WiFi传输/" rel="prev" title="利用Multipeer Connectivity框架进行WiFi传输">
+                利用Multipeer Connectivity框架进行WiFi传输 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/headImg.jpg" alt="唐健焯">
+            
+              <p class="site-author-name" itemprop="name">唐健焯</p>
+              <p class="site-description motion-element" itemprop="description">不会摄影的设计师不是个好码农！(´･_･`)</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/JanzTam" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/JanzTam" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/61073715" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLLocationManager"><span class="nav-number">1.</span> <span class="nav-text">CLLocationManager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MapView上显示定位点"><span class="nav-number">2.</span> <span class="nav-text">MapView上显示定位点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLLocationManager定位代理方法"><span class="nav-number">3.</span> <span class="nav-text">CLLocationManager定位代理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MKMapView缩放"><span class="nav-number">4.</span> <span class="nav-text">MKMapView缩放</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">唐健焯</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://janztam.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tangjz.cc/2015/11/02/Swift-定位-CLLocationManager/';
+          this.page.identifier = '2015/11/02/Swift-定位-CLLocationManager/';
+          this.page.title = '[Swift]定位-CLLocationManager';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://janztam.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
